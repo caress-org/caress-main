@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -74,4 +77,45 @@ a {
 
 .login-jpg {
 	height: 40vh;
+}
+
+.login-btn {
+	font-family: 'Poppins', sans-serif;
+	font-size: 15px;
+	font-weight: 440;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	padding-left: 25px;
+	padding-right: 25px;
+	background-color: white;
+	border: none;
+	border-radius: 34px;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	-webkit-tap-highlight-color: transparent;
+	width: 75%;
+}
+
+.login-btns {
+	display: flex;
+	/*position: absolute;*/
+	width: 100%;
+	justify-content: center;
+	padding-bottom: 20px;
+	/*padding-bottom: 10vh;*/
+}
+
+.login-btn:active {
+	outline: none;
+	background-color: white;
+	box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.3);
+}
+
+.btn-column {
+	display: flex;
+	justify-content: center;
+}
+
+.login-logo {
+	margin-right: 10px;
 }
