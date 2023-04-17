@@ -119,3 +119,29 @@ a {
 .login-logo {
 	margin-right: 10px;
 }
+
+@media (min-width: 1000px) {
+	.login-jpg {
+		height: 50vh;
+	}
+
+	.login-btn {
+		width: 50vw;
+	}
+}
+
+@media (min-height: 1000px) {
+	.login-jpg {
+		height: 60vh;
+	}
+
+	.login-btn {
+		width: 70vw;
+		font-size: 25px;
+	}
+	
+	.login-logo {
+		height: 40px;
+		margin-right: 30px;
+	}
+}
