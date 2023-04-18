@@ -4,17 +4,29 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from '@/firebase/clientApp'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 	
 	const router = useRouter();
-	
-	useEffect(() => {
-		router.replace('/login/');
-	  });
+	const [user, loading, error] = useAuthState(firebase.auth());
 
+	console.log(error);
+	console.log(user);
+
+	useEffect(() => {
+		if (user) {
+			router.replace('/home/');
+		} else {
+			router.replace('/login/');
+		
+	}
+}, [user]);
+		
+	
   return (
     <>
       <Head>
