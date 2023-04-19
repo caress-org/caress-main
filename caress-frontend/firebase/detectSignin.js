@@ -9,11 +9,28 @@ const isSignedIn = () => {
 	const [user, loading, error] = useAuthState(firebase.auth());
 
 	console.log(error);
-	console.log(user);
+	//console.log(user);
 
 	useEffect(() => {
 		if (user) {
 			router.replace('/home/');
+		} else {
+			router.replace('/login/');
+		
+	}
+}, [user]);
+}
+
+const isSignedInForpfp = () => {
+	const router = useRouter();
+	const [user, loading, error] = useAuthState(firebase.auth());
+
+	console.log(error);
+	//console.log(user);
+
+	useEffect(() => {
+		if (user) {
+			//router.replace('/profile/');
 		} else {
 			router.replace('/login/');
 		
@@ -33,4 +50,31 @@ const forTopBarPfp = () => {
   });
 };
 
-export default { isSignedIn, forTopBarPfp };
+const useAuth = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
+  return { user };
+
+}
+
+const signOut = async () => {
+  try {
+    await auth.signOut();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export default { isSignedIn, forTopBarPfp, useAuth, signOut, isSignedInForpfp };

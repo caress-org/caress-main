@@ -12,31 +12,31 @@ export default function Bottombar() {
     <div className={styles.bottombar}>
   <Link href="/home">
     <div className={router.pathname === '/home' ? styles.active : ''}>
-      <LucideHome />
+      <LucideHome className='icons' />
       {/*<span>Home</span>*/}
     </div>
   </Link>
   <Link href="/chat">
     <div className={router.pathname === '/chat' ? styles.active : ''}>
-      <LucideMessageSquare />
+      <LucideMessageSquare className='icons' />
       {/*<span>Profile</span>*/}
     </div>
   </Link>
   <Link href="/search">
     <div className={router.pathname === '/search' ? styles.active : ''}>
-      <LucideSearch />
+      <LucideSearch className='icons' />
       {/*<span>Profile</span>*/}
     </div>
   </Link>
   <Link href="/quizes">
     <div className={router.pathname === '/quizes' ? styles.active : ''}>
-      <LucideEdit />
+      <LucideEdit className='icons' />
       {/*<span>Settings</span>*/}
     </div>
   </Link>
   <Link href="/profile">
     <div className={router.pathname === '/profile' ? styles.active : ''}>
-      <LucideUser />
+      <LucideUser className='icons' />
       {/*<span>Settings</span>*/}
     </div>
   </Link>
