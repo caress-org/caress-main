@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import auth from '@/firebase/detectSignin'
 import Head from 'next/head';
 import TopBar from '@/components/topbar';
+import Bottombar from '@/components/bottombar';
 
 
 export default function Home() {	
@@ -22,7 +23,7 @@ export default function Home() {
 	return (
 		<>
 		<Head>
-        <title>My Website</title>
+        <title>DashBoard</title>
       </Head>
       <TopBar />
 		{/*<div className="login-btns">
@@ -30,6 +31,7 @@ export default function Home() {
 				<div className='btn-column'><p>Log Out</p></div>
 			</button>
 		</div>*/}
+		<Bottombar/>
 		</>
 	)
 }

@@ -34,13 +34,7 @@ export default function TopBar() {
 
   return (
     <div className={styles.topbar}>
-      <div className={styles.left}><Link href="/home">
-        {user && user.photoURL ? (
-          <img className={styles.pfp} src={user.photoURL} alt="Profile Picture" />
-        ) : (
-          <span>Home</span>
-        )}
-      </Link>
+      <div className={styles.left}>
       <Link href="/home">
         <span>Dashboard</span>
       </Link>
