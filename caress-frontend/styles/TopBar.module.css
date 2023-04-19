@@ -1,18 +1,35 @@
 .topbar {
-	background-color: rgba(0, 0, 0, 0.2);
-	color: #fff;
+	background-color: rgba(0, 0, 0, 0);
+	/*color: #fff;*/
 	display: flex;
 	justify-content: space-between;
 	padding: 10px;
+	font-family: 'Poppins', sans-serif;
+	height: 70px;
+	align-items: center;
   }
   
   .topbar a {
 	color: black;
 	margin-right: 10px;
 	text-decoration: none;
+	font-weight: 430;
+	font-size: 19px;
   }
   
-  .topbar a:hover {
-	text-decoration: underline;
+  
+  .topbar img {
+	border-radius: 50%;
+	height: 45px;
+	width: 45px;
+	object-fit: cover;
   }
   
+  .topbar span {
+	margin-left: 5px;
+  }
+  
+.left {
+	align-items: center;
+	display: flex;
+}
