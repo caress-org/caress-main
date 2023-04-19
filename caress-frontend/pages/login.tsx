@@ -4,21 +4,11 @@ import React from 'react';
 import 'firebase/compat/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import isSignedIn from '@/firebase/detectSignin';
 
 export default function Login() {
 
-	const router = useRouter();
-	const [user, loading, error] = useAuthState(firebase.auth());
-
-	console.log(error);
-	console.log(user);
-
-	useEffect(() => {
-		if (user) {
-			router.replace('/home/');
-		}
-}, [user]);
+	isSignedIn();
 
 	const handleSignInWithFacebook = async () => {
 	  const auth = firebase.auth();

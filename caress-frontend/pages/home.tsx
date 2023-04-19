@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import firebase from '@/firebase/clientApp';
 import { useRouter } from 'next/router';
+import isSignedIn from '@/firebase/detectSignin'
 
-export default function Home() {
+
+export default function Home() {	
+
+	isSignedIn();
+
 	const router = useRouter();
 	const handleLogout = async () => {
 		try {
