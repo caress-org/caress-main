@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '@/styles/TopBar.module.css';
 import Link from 'next/link';
-import { Settings } from 'lucide-react';
+import { LucideUser, Settings } from 'lucide-react';
 import firebase from '@/firebase/clientApp';
 import 'firebase/auth';
 import auth from '@/firebase/detectSignin';
@@ -36,11 +36,11 @@ export default function TopBar() {
     <div className={styles.topbar}>
       <div className={styles.left}>
       <Link href="/home">
-        <span>Dashboard</span>
+        <span>Hey {user?.displayName?.split(' ')[0]}!</span>
       </Link>
 	  </div>
-      <Link href="/settings">
-        <Settings />
+      <Link href="/profile">
+        <LucideUser />
       </Link>
     </div>
   );
