@@ -5,13 +5,13 @@ import styles from '@/styles/Home.module.css'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import firebase from '@/firebase/clientApp'
-import isSignedIn from '@/firebase/detectSignin';
+import auth from '@/firebase/detectSignin';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 	
-	isSignedIn();	
+	auth.isSignedIn();	
 	
   return (
     <>

@@ -1,0 +1,18 @@
+.topbar {
+	background-color: rgba(0, 0, 0, 0.2);
+	color: #fff;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+  }
+  
+  .topbar a {
+	color: black;
+	margin-right: 10px;
+	text-decoration: none;
+  }
+  
+  .topbar a:hover {
+	text-decoration: underline;
+  }
+  

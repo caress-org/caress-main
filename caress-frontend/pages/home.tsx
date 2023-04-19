@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import firebase from '@/firebase/clientApp';
 import { useRouter } from 'next/router';
-import isSignedIn from '@/firebase/detectSignin'
+import auth from '@/firebase/detectSignin'
+import Head from 'next/head';
+import TopBar from '@/components/topbar';
 
 
 export default function Home() {	
 
-	isSignedIn();
+	auth.isSignedIn();
 
 	const router = useRouter();
 	const handleLogout = async () => {
@@ -19,11 +21,15 @@ export default function Home() {
 	  };
 	return (
 		<>
-		<div className="login-btns">
+		<Head>
+        <title>My Website</title>
+      </Head>
+      <TopBar />
+		{/*<div className="login-btns">
 			<button className='login-btn' onClick={handleLogout}>
 				<div className='btn-column'><p>Log Out</p></div>
 			</button>
-			</div>
+		</div>*/}
 		</>
 	)
 }

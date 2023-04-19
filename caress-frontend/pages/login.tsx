@@ -4,11 +4,11 @@ import React from 'react';
 import 'firebase/compat/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import isSignedIn from '@/firebase/detectSignin';
+import auth from '@/firebase/detectSignin';
 
 export default function Login() {
 
-	isSignedIn();
+	auth.isSignedIn();
 
 	const handleSignInWithFacebook = async () => {
 	  const auth = firebase.auth();

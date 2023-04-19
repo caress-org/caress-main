@@ -1,6 +1,6 @@
 import react from 'react';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from '@/firebase/clientApp'
 
@@ -21,4 +21,16 @@ const isSignedIn = () => {
 }, [user]);
 }
 
-export default isSignedIn;
+const forTopBarPfp = () => {
+  return new Promise((resolve, reject) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        resolve(user);
+      } else {
+        reject(new Error('User is not authenticated'));
+      }
+    });
+  });
+};
+
+export default { isSignedIn, forTopBarPfp };
