@@ -22,22 +22,30 @@ export default function TopBar() {
 	  
 
 	  const [user, setUser] = useState<User | null>(null);
+	
+	  const [isReady, setIsReady] = useState(false);
 
 	useEffect(() => {
 		const getUser = async () => {
 		  const currentUser = await auth.isLoggedIn();
 		  console.log('User object:', currentUser);
 		  setUser(currentUser);
+		  setIsReady(true);
 		};
 		getUser();
 	  }, []);
+	
+	  const greeting = user ? `Hey ${user.displayName?.split(' ')[0]}!` : '';
 
   return (
     <div className={styles.topbar}>
       <div className={styles.left}>
       <Link href="/home">
-	  <span className={styles.greeting}>Hey {user?.displayName?.split(' ')[0]}!</span>
-      </Link>
+	  {isReady && (
+            <span className={styles.greeting} data-text={greeting}>
+              {greeting}
+            </span>
+          )}      </Link>
 	  </div>
       <Link href="/profile">
         <LucideUser />
