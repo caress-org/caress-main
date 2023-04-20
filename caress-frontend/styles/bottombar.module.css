@@ -1,5 +1,5 @@
 .bottombar {
-	background-color: #0000;
+	background-color: hsl(260, 100%, 95%);
 	color: black;
 	display: flex;
 	justify-content: space-between;

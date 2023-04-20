@@ -13,15 +13,17 @@ export default function ProfileView() {
 
   useEffect(() => {
 	const checkAuthentication = async () => {
-	  const user = await auth.isLoggedIn();
-
-	  if (!user) {
+	  try {
+		const user = await auth.isLoggedIn();
+	  } catch (error) {
 		router.replace('/login');
-	  }
+	  } 
+	  
 	};
 
 	checkAuthentication();
   }, []);
+
 
   useEffect(() => {
     if (!user) {

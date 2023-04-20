@@ -35,11 +35,12 @@ export default function Home() {
 
 	useEffect(() => {
 		const checkAuthentication = async () => {
-		  const user = await auth.isLoggedIn();
-	
-		  if (!user) {
+		  try {
+			const user = await auth.isLoggedIn();
+		  } catch (error) {
 			router.replace('/login');
-		  }
+		  } 
+		  
 		};
 	
 		checkAuthentication();
@@ -69,8 +70,10 @@ export default function Home() {
 				<div className='btn-column'><p>Log Out</p></div>
 			</button>
 		</div>*/}
+	<div className={styles.content}>
+
     <div className={styles.welcome}>
-      Welcome Back {user?.displayName?.split(' ')[0]} 👋
+      Welcome Back 👋
     </div>
 	<div className={styles.card}>
   <div className={styles.title}>How are you feeling today?</div>
@@ -89,7 +92,11 @@ export default function Home() {
     </div>
   </div>
 </div>
-
+{/*<div className={styles.card}>
+	<div className={styles.mh}>
+		Didn
+	</div>
+</div>*/}
 <div className={styles.container}>
   <div className={styles.columns}>
     <div className={styles.mh}>
@@ -107,6 +114,8 @@ export default function Home() {
       </ul>
     </div>
   </div>
+</div>
+
 </div>
 
 		<Bottombar/>

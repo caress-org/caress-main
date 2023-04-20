@@ -9,20 +9,32 @@ import auth from '@/firebase/detectSignin';
 export default function Login() {
 
 	const router = useRouter();
-
+	
 	auth.isSignedIn();
 
 	useEffect(() => {
 		const checkAuthentication = async () => {
-		  const user = await auth.isLoggedIn();
-	
-		  if (user) {
-			router.replace('/home/');
+		  try {
+			const user = await auth.isLoggedIn();
+			router.replace('/home/')
+		  } catch (error) {
 		  }
 		};
 	
 		checkAuthentication();
 	  }, []);
+
+	//useEffect(() => {
+	//	const checkAuthentication = async () => {
+	//	  const user = await auth.isLoggedIn();
+	
+	//	  if (user) {
+	//		router.replace('/home/');
+	//	  }
+	//	};
+	
+	//	checkAuthentication();
+	//  }, []);
 
 	const handleSignInWithFacebook = async () => {
 	  const auth = firebase.auth();

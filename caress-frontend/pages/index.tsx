@@ -15,12 +15,11 @@ export default function Home() {
 
 	useEffect(() => {
 		const checkAuthentication = async () => {
-		  const user = await auth.isLoggedIn();
-	
-		  if (!user) {
-			router.replace('/login');
-		  } else {
+		  try {
+			const user = await auth.isLoggedIn();
 			router.replace('/home/')
+		  } catch (error) {
+			router.replace('/login');
 		  }
 		};
 	
