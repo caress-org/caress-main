@@ -10,6 +10,8 @@ export default function Login() {
 
 	const router = useRouter();
 
+	auth.isSignedIn();
+
 	useEffect(() => {
 		const checkAuthentication = async () => {
 		  const user = await auth.isLoggedIn();
@@ -27,6 +29,7 @@ export default function Login() {
 	  const provider = new firebase.auth.FacebookAuthProvider();
 	  try {
 		await auth.signInWithPopup(provider);
+		//router.replace('/home/');
 	  } catch (error) {
 		console.error(error);
 	  }
