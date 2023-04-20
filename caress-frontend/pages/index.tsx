@@ -11,7 +11,21 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 	
-	auth.isSignedIn();	
+	const router =  useRouter();
+
+	useEffect(() => {
+		const checkAuthentication = async () => {
+		  const user = await auth.isLoggedIn();
+	
+		  if (!user) {
+			router.replace('/login');
+		  } else {
+			router.replace('/home/')
+		  }
+		};
+	
+		checkAuthentication();
+	  }, []);
 	
   return (
     <>

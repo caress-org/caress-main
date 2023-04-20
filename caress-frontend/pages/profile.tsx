@@ -4,13 +4,24 @@ import auth from '@/firebase/detectSignin';
 import styles from '@/styles/profile.module.css';
 import Bottombar from '@/components/bottombar';
 import firebase from '@/firebase/clientApp';
+import Head from 'next/head';
 
 export default function ProfileView() {
   const router = useRouter();
   const { user } = auth.useAuth();
   const [isLoading, setIsLoading] = useState(true);
 
-  auth.isSignedInForpfp()
+  useEffect(() => {
+	const checkAuthentication = async () => {
+	  const user = await auth.isLoggedIn();
+
+	  if (!user) {
+		router.replace('/login');
+	  }
+	};
+
+	checkAuthentication();
+  }, []);
 
   useEffect(() => {
     if (!user) {
@@ -34,6 +45,10 @@ export default function ProfileView() {
   }
 
   return (
+	<>
+	<Head>
+		<title>Profile</title>
+	</Head>
     <div className={styles.container}>
       <div className={styles.header}>
         {/*<img src="/logo.png" alt="Logo" />*/}
@@ -49,5 +64,6 @@ export default function ProfileView() {
       </div>
 	  <Bottombar/>
     </div>
+	</>
   );
 }

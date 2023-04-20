@@ -38,7 +38,7 @@ const isSignedInForpfp = () => {
 }, [user]);
 }
 
-const forTopBarPfp = () => {
+const isLoggedIn = () => {
   return new Promise((resolve, reject) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -77,4 +77,4 @@ const signOut = async () => {
   }
 };
 
-export default { isSignedIn, forTopBarPfp, useAuth, signOut, isSignedInForpfp };
+export default { isSignedIn, isLoggedIn, useAuth, signOut, isSignedInForpfp };

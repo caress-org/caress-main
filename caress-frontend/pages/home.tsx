@@ -9,7 +9,17 @@ import Bottombar from '@/components/bottombar';
 
 export default function Home() {	
 
-	auth.isSignedIn();
+	useEffect(() => {
+		const checkAuthentication = async () => {
+		  const user = await auth.isLoggedIn();
+	
+		  if (!user) {
+			router.replace('/login');
+		  }
+		};
+	
+		checkAuthentication();
+	  }, []);
 
 	const router = useRouter();
 	const handleLogout = async () => {

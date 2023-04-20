@@ -25,7 +25,7 @@ export default function TopBar() {
 
 	useEffect(() => {
 		const getUser = async () => {
-		  const currentUser = await auth.forTopBarPfp();
+		  const currentUser = await auth.isLoggedIn();
 		  console.log('User object:', currentUser);
 		  setUser(currentUser);
 		};
