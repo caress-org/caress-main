@@ -1,5 +1,5 @@
 .bottombar {
-	background-color: hsl(260, 100%, 95%);
+	background-color: hsl(260, 50%, 75%);
 	color: black;
 	display: flex;
 	justify-content: space-between;
@@ -23,7 +23,7 @@
   
   .bottombar div.active {
 	border-radius: 30%;
-	background-color: rgba(220, 220, 220, 1);
+	background-color: #ECDFF5;
 	color: black;
   }
   
