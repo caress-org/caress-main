@@ -36,7 +36,7 @@ export default function TopBar() {
     <div className={styles.topbar}>
       <div className={styles.left}>
       <Link href="/home">
-        <span>Hey {user?.displayName?.split(' ')[0]}!</span>
+	  <span className={styles.greeting}>Hey {user?.displayName?.split(' ')[0]}!</span>
       </Link>
 	  </div>
       <Link href="/profile">
