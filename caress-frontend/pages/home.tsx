@@ -94,7 +94,7 @@ export default function Home() {
 </div>
 {/*<div className={styles.card}>
 	<div className={styles.mh}>
-		Didn
+		Give Caress Quiz
 	</div>
 </div>*/}
 <div className={styles.container}>
