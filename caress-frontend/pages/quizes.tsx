@@ -1,9 +1,12 @@
 import Bottombar from '@/components/bottombar';
 import Head from 'next/head';
-import react from 'react';
+import React from 'react';
 import styles from '@/styles/home.module.css'
+import { useRouter } from 'next/router';
 
 export default function Quiz() {
+
+	const router = useRouter();
 
 	return (
 		<div className={styles.content}>
@@ -33,7 +36,7 @@ export default function Quiz() {
     				</div>
 				</div>
 				<div>
-					<button className={styles.btn}>Take Quiz</button>
+					<button className={styles.btn} onClick={() => {router.replace('/quizes/caress-quiz/')}}>Take Quiz</button>
 				</div>
 			</div>
 
