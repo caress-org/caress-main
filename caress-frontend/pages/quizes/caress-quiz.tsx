@@ -2,6 +2,7 @@ import Bottombar from '@/components/bottombar';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styles from '@/styles/quiz.module.css';
+import Head from 'next/head';
 
 let fields = [50, 50, 50, 50, 50, 50];
 
@@ -141,7 +142,7 @@ export default function Caress_quiz() {
     { answer: 'No significant change (I was already at a healthy weight)', impact: [0, 10, 0, 0, 0, 0] },
 		{ answer: 'No significant change (I was over/underweight)', impact: [0, -5, 0, 0, 0, 0] },
     { answer: 'Lost a lot of Weight (I was normal/underweight)', impact: [0, -10, 0, 0, 0, 0] },
-    { answer: 'Lost Weight (I was overweight)', impact: [0, 10, 0, 0, 0, 10] }
+    { answer: 'Lost Weight (I was overweight)', impact: [0, 10, 0, 0, 0, 0] }
   ]
 },
 {
@@ -167,11 +168,11 @@ export default function Caress_quiz() {
 {
   question: 'Have you experienced any significant cravings or aversions to certain foods this week?',
   answers: [
-    { answer: 'Absolutely, cravings', impact: [0, -5, 0, 0, 0] },
+    { answer: 'Absolutely, cravings', impact: [0, -5, 0, 0, 0, 0] },
 		{ answer: 'Somewhat, cravings', impact: [0, -2, 0, 0, 0, 0] },
 		{ answer: 'None', impact: [0, 10, 0, 0, 0, 0] },
 		{ answer: 'Somewhat, aversions', impact: [0, -2, 0, 0, 0, 5] },
-		{ answer: 'Absolutely, aversions', impact: [0, -5, 0, 0, 0, 10] }
+		{ answer: 'Absolutely, aversions', impact: [0, -5, 0, 0, 0, 0] }
 		]
 		},
 
@@ -338,20 +339,31 @@ export default function Caress_quiz() {
 
 	const [questionNumber, setQuestionNumber] = useState(0);
 
-	const onClick = (array: Array<number>) => {
-		if (questionNumber + 1 === questions.length) {
-		  router.push({pathname: '/result', query: { result: fields }});
+	const isClicked: number[] = Array(30).fill(0);
+
+	const onClick = async (array: Array<number>) => {
+		if (isClicked[questionNumber] === 0) {
+			if (questionNumber + 1 === questions.length) {
+			for (let i = 0; i < fields.length; i++) {
+				fields[i] += array[i];
+			  }
+			isClicked[questionNumber] = 1;
+		  router.push({pathname: '/quizes/caress-result', query: { result: fields }});
 		} else {
-			fields = fields.map(function (num, i) {
-				return num + array[i];
-			});
+			for (let i = 0; i < fields.length; i++) {
+				fields[i] += array[i];
+			  }
+			  isClicked[questionNumber] = 1;
 			const n = questionNumber + 1
 			setQuestionNumber(n);
-		}
+		}}
 	  };
 
 	return (
-		<div>
+		<div className={styles.content}>
+			<Head>
+				<title>Caress-Quiz</title>
+			</Head>
 			<div className={styles.progress_bar}>
   <div className={styles.progress} style={{ width: `${(questionNumber / questions.length) * 100}%` }}></div>
 </div>
