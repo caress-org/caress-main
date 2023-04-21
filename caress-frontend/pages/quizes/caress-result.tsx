@@ -11,7 +11,7 @@ export default function Caress_result() {
 
 
 	return (
-		<div>
+		<div className={styles.content}>
   <Head>
     <title>Caress-Results</title>
   </Head>

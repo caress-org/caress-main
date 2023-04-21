@@ -171,7 +171,7 @@ export default function Caress_quiz() {
     { answer: 'Absolutely, cravings', impact: [0, -5, 0, 0, 0, 0] },
 		{ answer: 'Somewhat, cravings', impact: [0, -2, 0, 0, 0, 0] },
 		{ answer: 'None', impact: [0, 10, 0, 0, 0, 0] },
-		{ answer: 'Somewhat, aversions', impact: [0, -2, 0, 0, 0, 5] },
+		{ answer: 'Somewhat, aversions', impact: [0, -2, 0, 0, 0, 0] },
 		{ answer: 'Absolutely, aversions', impact: [0, -5, 0, 0, 0, 0] }
 		]
 		},
