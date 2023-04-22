@@ -5,6 +5,7 @@ import styles from '@/styles/profile.module.css';
 import Bottombar from '@/components/bottombar';
 import firebase from '@/firebase/clientApp';
 import Head from 'next/head';
+import { LucideArrowRight, LucideSettings } from 'lucide-react';
 
 export default function ProfileView() {
   const router = useRouter();
@@ -46,6 +47,10 @@ export default function ProfileView() {
     return <p>Loading...</p>;
   }
 
+  const Caress_results = () => {
+	console.log('clicked');
+  }
+
   return (
 	<>
 	<Head>
@@ -54,18 +59,34 @@ export default function ProfileView() {
     <div className={styles.container}>
       <div className={styles.header}>
         {/*<img src="/logo.png" alt="Logo" />*/}
-        <h1>Profile</h1>
-        <button className={styles.signout_btn} onClick={handleLogout}>Log Out</button>
-      </div>
-      <div className={styles.info}>
-        <img src={(user as any)?.photoURL} alt="Profile picture" />
+		<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+		<img src={(user as any)?.photoURL} alt="Profile picture" />
         <div>
           <p>{(user as any)?.displayName ?? 'Unknown'}</p>
-          <p>{(user as any)?.email ?? 'Unknown'}</p>
+          {/*<p>{(user as any)?.email ?? 'Unknown'}</p>*/}
         </div>
+		</div>
+		<LucideSettings style={{marginRight: '10px'}}/>
+        {/*<h1>Profile</h1>*/}
+        {/*<button className={styles.signout_btn} onClick={handleLogout}>Log Out</button>*/}
       </div>
-	  <Bottombar/>
+      <div className={styles.card} onClick={Caress_results}>
+		<div className={styles.row}>
+			<div>
+				<p>Mental Health Reports</p>
+			</div>
+			<div>
+				<LucideArrowRight/>
+			</div>
+		</div>
+      </div>
     </div>
+	<div className={styles.card}>
+		<div className={styles.title}>
+			Traits
+		</div>
+	</div>
+	<Bottombar/>
 	</>
   );
 }
