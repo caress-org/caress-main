@@ -133,16 +133,7 @@ export default function Home() {
     </div>
   </div>
 </div>
-<div className={styles.card}>
-	<div className={styles.mh}>
-		Not yet taken your weekly mental health quiz?
-	</div>
-	<div>
-		<Link className={styles.link} href="/quizes">
-		Click here to take it now!
-		</Link>
-	</div>
-</div>
+
 {latestQuizResult && (
 <div className={styles.container}>
   <div className={styles.columns}>
@@ -163,6 +154,26 @@ export default function Home() {
   </div>
 </div>
 )}
+<div className={styles.card}>
+	<div className={styles.mh}>
+		Not yet taken your weekly Mental Health Quiz?
+	</div>
+	<div>
+		<Link className={styles.link} href="/quizes">
+		Click here to take it now!
+		</Link>
+	</div>
+</div>
+<div className={styles.card}>
+	<div className={styles.mh}>
+		Not yet taken your Personality Quiz?
+	</div>
+	<div>
+		<Link className={styles.link} href="/quizes">
+		Click here to take it now!
+		</Link>
+	</div>
+</div>
 
 </div>
 

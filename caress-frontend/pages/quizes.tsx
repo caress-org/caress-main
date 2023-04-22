@@ -63,7 +63,7 @@ export default function Quiz() {
 
 			<div className={styles.container}>
 				<div className={styles.title} > 
-					Caress Model
+					Caress Model (Weekly Mental Health Assesment)
 				</div>
 				<div>
 				CARESS model is made by us to be used in therapy to assess and address a client's mental and emotional state. <a href="" className={styles.a}>Learn more about it.</a> The acronym stands for:
@@ -86,9 +86,33 @@ export default function Quiz() {
             <button className={styles.btn} onClick={ () => router.push('/quizes/caress-quiz') }>Take Quiz</button>
 			)}
 			</div>
+			</div>
+
+			<div className={styles.container}>
+				<div className={styles.title} > 
+					Ocean Model (Personality Test)
+				</div>
+				<div>
+				The OCEAN model is widely used in psychology research, career counseling, and personal development. It can help individuals gain a better understanding of themselves and others, and identify areas for personal growth and improvement. <a href="" className={styles.a}>Learn more about it.</a> The acronym stands for:
+
+					<div className={styles.scores}>
+      					<ul className={styles.q_my_list}>
+      					  <li className={styles.q_li}>Openness</li>
+      					  <li className={styles.q_li}>Conscientiousness</li>
+      					  <li className={styles.q_li}>Extraversion</li>
+      					  <li className={styles.q_li}>Agreeableness</li>
+      					  <li className={styles.q_li}>Agreeableness</li>
+      					</ul>
+    				</div>
+				</div>
+				<button className={styles.btn} onClick={ () => router.push('/quizes/ocean-quiz') }>Take Quiz</button>
+
+				</div>
+
+			
 
 		<Bottombar/>
-		</div>
+
 		</div>
 	)
 }
