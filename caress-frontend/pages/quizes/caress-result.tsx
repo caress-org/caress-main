@@ -1,15 +1,65 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '@/styles/results.module.css'
+import auth from '@/firebase/detectSignin';
+import firebase from '@/firebase/clientApp';
 
 export default function Caress_result() {
 
 	const router = useRouter();
+
+	useEffect(() => {
+		const checkAuthentication = async () => {
+		  try {
+			const user = await auth.isLoggedIn();
+		  } catch (error) {
+			router.replace('/login');
+		  } 
+		  
+		};
+	
+		checkAuthentication();
+	  }, []);
+
 	const results: any = router.query.result;
 	let mhc = (0.1 * results[0]) + (0.15 * results[1]) + (0.15 * results[2]) + (0.25 * results[3]) + (0.2 * results[4]) + (0.15 * results[5])
 
 
+	const user: any = firebase.auth().currentUser;
+
+	const now = new Date();
+  const quizResult = {
+    copingStrategies: results[0],
+    appetite: results[1],
+    relationships: results[2],
+    energy: results[3],
+    sleep: results[4],
+    sentiment: results[5],
+    mhScore: mhc,
+    date: now.toDateString(),
+  };
+
+//  firebase.firestore().collection('users').doc(user.uid).collection('caress-results').add(quizResult);
+const latestResultRef = firebase.firestore().collection('users').doc(user.uid).collection('caress-results')
+.orderBy('date', 'desc')
+.limit(1);
+
+latestResultRef.get().then((snapshot) => {
+if (!snapshot.empty) {
+  const latestResult = snapshot.docs[0].data();
+  const latestResultDate = new Date(latestResult.date);
+  const daysDiff = Math.floor((now.getTime() - latestResultDate.getTime()) / (1000 * 3600 * 24));
+
+  if (daysDiff > 7) {
+	firebase.firestore().collection('users').doc(user.uid).collection('caress-results').doc(now.toDateString()).set(quizResult);
+  }
+} else {
+  firebase.firestore().collection('users').doc(user.uid).collection('caress-results').doc(now.toDateString()).set(quizResult);
+}
+}).catch((error) => {
+console.log('Error getting latest quiz result:', error);
+});
 	return (
 		<div className={styles.content}>
   <Head>

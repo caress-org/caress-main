@@ -1,14 +1,28 @@
 import Bottombar from '@/components/bottombar';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/quiz.module.css';
 import Head from 'next/head';
+import auth from '@/firebase/detectSignin';
 
 let fields = [50, 50, 50, 50, 50, 50];
 
 export default function Caress_quiz() {
 
 	const router = useRouter();
+
+	useEffect(() => {
+		const checkAuthentication = async () => {
+		  try {
+			const user = await auth.isLoggedIn();
+		  } catch (error) {
+			router.replace('/login');
+		  } 
+		  
+		};
+	
+		checkAuthentication();
+	  }, []);
 
 	const questions = [
 		// Sentiment and Emotional State

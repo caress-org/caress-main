@@ -1,12 +1,56 @@
 import Bottombar from '@/components/bottombar';
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '@/styles/home.module.css'
 import { useRouter } from 'next/router';
+import firebase from '@/firebase/clientApp';
+import auth from '@/firebase/detectSignin';
 
 export default function Quiz() {
 
+	auth.isLoggedIn();
+
 	const router = useRouter();
+	const [user, setUser] = useState<firebase.User | null>(null);
+
+	const now = new Date();
+	const [latestResult, setLatestResult] = useState<null | any>(null);
+	const [daysDiff, setDaysDiff] = useState<number | null>(null);
+	const [isLoading, setIsLoading] = useState(true);
+
+	async function fetchUser() {
+		const user = await firebase.auth().currentUser;
+		return user;
+	}
+
+	useEffect(() => {
+		async function fetchLatestResult() {
+			const user = await fetchUser();
+			if (user) {
+				const latestResultRef = firebase.firestore().collection('users').doc(user.uid).collection('caress-results')
+				  .orderBy('date', 'desc')
+				  .limit(1);
+				const snapshot = await latestResultRef.get();
+				if (!snapshot.empty) {
+				  const latestResultData = snapshot.docs[0].data();
+				  const latestResultDate = new Date(latestResultData.date);
+				  const diff = Math.floor((now.getTime() - latestResultDate.getTime()) / (1000 * 3600 * 24));
+				  setLatestResult(latestResultData);
+				  setDaysDiff(diff);
+				} else {
+				  setLatestResult(null);
+				  setDaysDiff(null);
+				}
+			}
+			setIsLoading(false);
+		}
+		fetchLatestResult();
+	}, [now]);
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
 
 	return (
 		<div className={styles.content}>
@@ -36,11 +80,15 @@ export default function Quiz() {
     				</div>
 				</div>
 				<div>
-					<button className={styles.btn} onClick={() => {router.replace('/quizes/caress-quiz/')}}>Take Quiz</button>
-				</div>
+          {latestResult && daysDiff !== null && daysDiff < 7 ? (
+            <button className={styles.btn}>Wait {7 - daysDiff} days to take the quiz again</button>
+          ) : (
+            <button className={styles.btn} onClick={ () => router.push('/quizes/caress-quiz') }>Take Quiz</button>
+			)}
 			</div>
 
 		<Bottombar/>
+		</div>
 		</div>
 	)
 }

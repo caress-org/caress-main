@@ -20,9 +20,22 @@ export default function Home() {
 		tenantId: string | null;
 		providerData: any[];
 	  }
+
+	  interface QuizResult {
+		date: string;
+		copingStrategies: number;
+		appetite: number;
+		relationships: number;
+		energy: number;
+		sleep: number;
+		sentiment: number;
+		mhScore: number;
+	  }
 	  
 
 	  const [user, setUser] = useState<User | null>(null);
+	  const [latestQuizResult, setLatestQuizResult] = useState<QuizResult | null>(null);
+
 
 	useEffect(() => {
 		const getUser = async () => {
@@ -59,6 +72,33 @@ export default function Home() {
 	  const handleEmotionClick = async (emotion: string) => {
 	  }
 
+	  useEffect(() => {
+		const getLatestQuizResult = async () => {
+		  try {
+			const latestResultRef = firebase.firestore().collection('users').doc(user?.uid).collection('caress-results')
+			  .orderBy('date', 'desc')
+			  .limit(1);
+	
+			const snapshot = await latestResultRef.get();
+	
+			if (!snapshot.empty) {
+			  const latestResult = snapshot.docs[0].data() as QuizResult;
+			  setLatestQuizResult(latestResult);
+			} else {
+			  setLatestQuizResult(null);
+			}
+		  } catch (error) {
+			console.log('Error getting latest quiz result:', error);
+			setLatestQuizResult(null);
+		  }
+		};
+	
+		if (user) {
+		  getLatestQuizResult();
+		}
+	  }, [user]);
+
+	  console.log('hello')
 	return (
 		<>
 		<Head>
@@ -97,6 +137,7 @@ export default function Home() {
 		Give Caress Quiz
 	</div>
 </div>*/}
+{latestQuizResult && (
 <div className={styles.container}>
   <div className={styles.columns}>
     <div className={styles.mh}>
@@ -104,17 +145,18 @@ export default function Home() {
     </div>
     <div className={styles.scores}>
       <ul className={styles.my_list}>
-        <li className={styles.li}>Coping Strategies and Self-Care: 65</li>
-        <li className={styles.li}>Appetite and Eating Habits: 28</li>
-        <li className={styles.li}>Relationships and Social Support: 40</li>
-        <li className={styles.li}>Energy and Motivation: 75</li>
-        <li className={styles.li}>Sleep: 20</li>
-        <li className={styles.li}>Sentiment: 20</li>
-        <li className={styles.li}>Overall: 42.45/100</li>
+        <li className={styles.li}>Coping Strategies and Self-Care: {latestQuizResult.copingStrategies}</li>
+        <li className={styles.li}>Appetite and Eating Habits: {latestQuizResult.appetite}</li>
+        <li className={styles.li}>Relationships and Social Support: {latestQuizResult.relationships}</li>
+        <li className={styles.li}>Energy and Motivation: {latestQuizResult.energy}</li>
+        <li className={styles.li}>Sleep: {latestQuizResult.sleep}</li>
+        <li className={styles.li}>Sentiment: {latestQuizResult.sentiment}</li>
+        <li className={styles.li}>Overall: {latestQuizResult.mhScore}/100</li>
       </ul>
     </div>
   </div>
 </div>
+)}
 
 </div>
 
