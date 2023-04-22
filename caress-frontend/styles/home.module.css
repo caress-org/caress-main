@@ -161,3 +161,13 @@
 .a:hover {
 	text-decoration: underline;
   }
+
+  .link {
+	color: #6c63ff;
+	text-decoration: none;
+	font-weight: bold;
+  }
+  
+  .link:hover {
+	  text-decoration: underline;
+	}

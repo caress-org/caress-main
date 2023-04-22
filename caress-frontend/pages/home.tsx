@@ -6,6 +6,7 @@ import Head from 'next/head';
 import TopBar from '@/components/topbar';
 import Bottombar from '@/components/bottombar';
 import styles from '@/styles/home.module.css';
+import Link from 'next/link';
 
 export default function Home() {	
 
@@ -132,11 +133,16 @@ export default function Home() {
     </div>
   </div>
 </div>
-{/*<div className={styles.card}>
+<div className={styles.card}>
 	<div className={styles.mh}>
-		Give Caress Quiz
+		Not yet taken your weekly mental health quiz?
 	</div>
-</div>*/}
+	<div>
+		<Link className={styles.link} href="/quizes">
+		Click here to take it now!
+		</Link>
+	</div>
+</div>
 {latestQuizResult && (
 <div className={styles.container}>
   <div className={styles.columns}>
