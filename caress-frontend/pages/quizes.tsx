@@ -18,20 +18,19 @@ export default function Quiz() {
 	const [daysDiff, setDaysDiff] = useState<number | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 
-	async function fetchUser() {
-		return new Promise<firebase.User | null>((resolve) => {
-		  firebase.auth().onAuthStateChanged((user) => {
-			setUser(user);
-			resolve(user);
-		  });
-		});
-	}
 
 	useEffect(() => {
 		async function fetchLatestResult() {
-			const user = await fetchUser();
-			if (user) {
-				const latestResultRef = firebase.firestore().collection('users').doc(user.uid).collection('caress-results')
+			const getUser = async () => {
+				const currentUser = await auth.isLoggedIn();
+				console.log('User object:', currentUser);
+				setUser(currentUser);
+				return currentUser;
+			  };
+			//  getUser();
+			const User:any = await getUser();
+			if (User) {
+				const latestResultRef = firebase.firestore().collection('users').doc(User.uid).collection('caress-results')
 				  .orderBy('date', 'desc')
 				  .limit(1);
 				const snapshot = await latestResultRef.get();
@@ -51,14 +50,14 @@ export default function Quiz() {
 			setIsLoading(false);
 		}
 		fetchLatestResult();
-	}, [now]);
+	}, [user, now]);
 
 	const [OlatestResult, setOLatestResult] = useState<null | any>(null);
 
 
 	useEffect(() => {
 		async function OfetchLatestResult() {
-			const user = await fetchUser();
+			//const user = await fetchUser();
 			if (user) {
 				const OlatestResultRef = firebase.firestore().collection('users').doc(user.uid).collection('ocean-results')
 				  .orderBy('date', 'desc')

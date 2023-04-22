@@ -8,31 +8,94 @@ import Head from 'next/head';
 import { LucideArrowRight, LucideSettings } from 'lucide-react';
 
 export default function ProfileView() {
+
+	interface User {
+		uid: string;
+		email: string | null;
+		displayName: string | null;
+		photoURL: string | null;
+		emailVerified: boolean;
+		phoneNumber: string | null;
+		isAnonymous: boolean;
+		tenantId: string | null;
+		providerData: any[];
+	  }
+
   const router = useRouter();
-  const { user } = auth.useAuth();
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-	const checkAuthentication = async () => {
-	  try {
-		const user = await auth.isLoggedIn();
-	  } catch (error) {
-		router.replace('/login');
-	  } 
-	  
-	};
 
-	checkAuthentication();
+  useEffect(() => {
+	const getUser = async () => {
+	  const currentUser = await auth.isLoggedIn();
+	  console.log('User object:', currentUser);
+	  setUser(currentUser);
+	};
+	getUser();
   }, []);
 
 
+  interface QuizResult {
+	date: string;
+	openness: number;
+	conscientiousness: number;
+	extraversion: number;
+	agreeableness: number;
+	neuroticism: number;
+	traits: Array<string>;
+  }
+  
+
+  const [latestQuizResult, setLatestQuizResult] = useState<QuizResult | null>(null);
+
   useEffect(() => {
-    if (!user) {
-      //  router.push('/login');
-    } else {
-      setIsLoading(false);
-    }
-  }, [user, router]);
+	const getUser = async () => {
+	  const currentUser = await auth.isLoggedIn();
+	  console.log('User object:', currentUser);
+	  setUser(currentUser);
+	  setIsLoading(false);
+	};
+	getUser();
+  
+	if (!user) {
+	  return;
+	}
+  
+	const checkAuthentication = async () => {
+	  try {
+		await auth.isLoggedIn();
+	  } catch (error) {
+		router.replace('/login');
+	  } 
+	};
+	checkAuthentication();
+  
+	const getLatestQuizResult = async () => {
+	  try {
+		const latestResultRef = firebase.firestore().collection('users').doc(user?.uid).collection('ocean-results')
+		  .orderBy('date', 'desc')
+		  .limit(1);
+  
+		const snapshot = await latestResultRef.get();
+  
+		if (!snapshot.empty) {
+		  const latestResult = snapshot.docs[0].data() as QuizResult;
+		  setLatestQuizResult(latestResult);
+		} else {
+		  setLatestQuizResult(null);
+		}
+	  } catch (error) {
+		console.log('Error getting latest quiz result:', error);
+		setLatestQuizResult(null);
+	  }
+	};
+	getLatestQuizResult();
+  }, [user]);
+  
+  
+
+
 
   const handleLogout = async () => {
 	try {
@@ -50,6 +113,8 @@ export default function ProfileView() {
   const Caress_results = () => {
 	console.log('clicked');
   }
+
+
 
   return (
 	<>
@@ -81,11 +146,51 @@ export default function ProfileView() {
 		</div>
       </div>
     </div>
-	<div className={styles.card}>
-		<div className={styles.title}>
-			Traits
-		</div>
-	</div>
+	{latestQuizResult && (
+<div className={styles.card}>
+  <div className={styles.columns}>
+    <div className={styles.title}>
+      Personal Traits
+    </div>
+    <div className={styles.scores}>
+      <ul className={styles.my_list}>
+        <li className={styles.li}>Openness: {latestQuizResult.openness}</li>
+        <li className={styles.li}>Conscientiousness: {latestQuizResult.conscientiousness}</li>
+        <li className={styles.li}>Extraversion: {latestQuizResult.extraversion}</li>
+        <li className={styles.li}>Agreeableness: {latestQuizResult.agreeableness}</li>
+        <li className={styles.li}>Neuroticism: {latestQuizResult.neuroticism}</li>
+      </ul>
+	  
+    </div>
+	<br />
+	<div>
+		1) {latestQuizResult.traits[0]}
+	  </div>
+	  <br />
+	  <div>
+		2) {latestQuizResult.traits[1]}
+	  </div>
+	  <br />
+	  <div>
+		3) {latestQuizResult.traits[2]}
+	  </div>
+	  <br />
+	  <div>
+		4) {latestQuizResult.traits[3]}
+	  </div>
+	  <br />
+	  <div>
+		5) {latestQuizResult.traits[4]}
+	  </div>
+	  <br />
+  </div>
+</div>
+)}
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 	<Bottombar/>
 	</>
   );
