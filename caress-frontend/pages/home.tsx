@@ -113,6 +113,8 @@ export default function Home() {
 		</div>*/}
 	<div className={styles.content}>
 
+		{/*<br />*/}
+
     <div className={styles.welcome}>
       Welcome Back 👋
     </div>

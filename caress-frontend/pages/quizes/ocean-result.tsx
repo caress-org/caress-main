@@ -24,6 +24,8 @@ export default function Caress_result() {
 
 	  const results: any = router.query.result;
 
+	  const user: any = firebase.auth().currentUser;
+
 	  let openness = '';
 	  let conscientiousness = '';
 	  let extraversion = '';
@@ -73,6 +75,10 @@ export default function Caress_result() {
 	  extraversion = 'You are outgoing and sociable, enjoying large groups of people and being the center of attention. You tend to be assertive and expressive, and may find solitude or downtime less appealing than social activities. You gain energy from socializing and being around others.'
   }
 
+  const traits = [openness, conscientiousness, extraversion, agreeableness, neuroticism];
+
+
+
   return (
 	<div className={styles.content}>
 <Head>
@@ -113,7 +119,33 @@ export default function Caress_result() {
 
 
 <div className={styles.container}>
-	
+	<div className={styles.resultContainer}>
+		<div className={styles.label}>
+			Traits
+		</div>
+		<div className={styles.resultContainer}>
+			<br/>
+			<div className={styles.result}>
+				1) {openness}
+			</div>
+			<br/>
+			<div className={styles.result}>
+				2) {conscientiousness}
+			</div>
+			<br />
+			<div className={styles.result}>
+				3) {extraversion}
+			</div>
+			<br />
+			<div className={styles.result}>
+				4) {agreeableness}
+			</div>
+			<br />
+			<div className={styles.result}>
+				5) {neuroticism}
+			</div>
+		</div>
+	</div>
 </div>
 </div>
 
