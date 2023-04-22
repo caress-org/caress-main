@@ -108,6 +108,7 @@
 	font-size: 20px;
 	font-weight: bold;
 	margin-bottom: 20px;
+	text-align: center;
   }
 
   .row {
@@ -137,5 +138,34 @@
 	margin: 8px 0;
 	display: flex;
 	justify-content: space-between;
+  }
+
+  .mh {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+  }
+
+  .lis {
+	margin: 8px 0;
+	display: flex;
+	justify-content: space-between;
+  }
+  
+  /*.li::before {
+	content: "- ";
+  }*/
+  
+  .lis:last-child {
+	margin-top: 16px;
+	font-weight: bold;
+  }
+
+  .titles {
+	font-family: "Poppins", sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	text-align: center;
   }
   

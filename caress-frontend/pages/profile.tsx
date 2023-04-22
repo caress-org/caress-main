@@ -33,7 +33,7 @@ export default function ProfileView() {
 	  setUser(currentUser);
 	};
 	getUser();
-  }, []);
+}, []);
 
 
   interface QuizResult {
@@ -111,7 +111,7 @@ export default function ProfileView() {
   }
 
   const Caress_results = () => {
-	console.log('clicked');
+	router.replace('/mental-health-reports');
   }
 
 
@@ -150,7 +150,7 @@ export default function ProfileView() {
 <div className={styles.card}>
   <div className={styles.columns}>
     <div className={styles.title}>
-      Personal Traits
+      Personality Traits
     </div>
     <div className={styles.scores}>
       <ul className={styles.my_list}>
