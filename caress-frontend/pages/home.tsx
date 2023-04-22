@@ -36,29 +36,7 @@ export default function Home() {
 
 	  const [user, setUser] = useState<User | null>(null);
 	  const [latestQuizResult, setLatestQuizResult] = useState<QuizResult | null>(null);
-
-
-	useEffect(() => {
-		const getUser = async () => {
-		  const currentUser = await auth.isLoggedIn();
-		  console.log('User object:', currentUser);
-		  setUser(currentUser);
-		};
-		getUser();
-	  }, []);
-
-	useEffect(() => {
-		const checkAuthentication = async () => {
-		  try {
-			const user = await auth.isLoggedIn();
-		  } catch (error) {
-			router.replace('/login');
-		  } 
-		  
-		};
-	
-		checkAuthentication();
-	  }, []);
+	  const [quizResultLoaded, setQuizResultLoaded] = useState<boolean>(false);
 
 	const router = useRouter();
 	const handleLogout = async () => {
@@ -74,30 +52,41 @@ export default function Home() {
 	  }
 
 	  useEffect(() => {
-		const getLatestQuizResult = async () => {
+		const checkAuthentication = async () => {
 		  try {
-			const latestResultRef = firebase.firestore().collection('users').doc(user?.uid).collection('caress-results')
-			  .orderBy('date', 'desc')
-			  .limit(1);
-	
-			const snapshot = await latestResultRef.get();
-	
-			if (!snapshot.empty) {
-			  const latestResult = snapshot.docs[0].data() as QuizResult;
-			  setLatestQuizResult(latestResult);
-			} else {
-			  setLatestQuizResult(null);
+			const currentUser = await auth.isLoggedIn();
+			console.log('User object:', currentUser);
+			setUser(currentUser);
+	  
+			if (currentUser) {
+			  // Check if latest quiz result is already cached
+			  if (!latestQuizResult) {
+				// Fetch the latest quiz result from Firestore
+				const latestResultRef = firebase
+				  .firestore()
+				  .collection('users')
+				  .doc(currentUser.uid)
+				  .collection('caress-results')
+				  .orderBy('date', 'desc')
+				  .limit(1);
+		  
+				const snapshot = await latestResultRef.get();
+		  
+				if (!snapshot.empty) {
+				  const latestResult = snapshot.docs[0].data() as QuizResult;
+				  setLatestQuizResult(latestResult);
+				}
+			  }
+			  setQuizResultLoaded(true);
 			}
 		  } catch (error) {
-			console.log('Error getting latest quiz result:', error);
-			setLatestQuizResult(null);
+			console.log('Error checking authentication:', error);
+			router.replace('/login');
 		  }
 		};
-	
-		if (user) {
-		  getLatestQuizResult();
-		}
-	  }, [user]);
+	  
+		checkAuthentication();
+	  }, []);
 
 	  console.log('hello')
 	return (
@@ -136,7 +125,7 @@ export default function Home() {
   </div>
 </div>
 
-{latestQuizResult && (
+{quizResultLoaded && latestQuizResult && (
 <div className={styles.container}>
   <div className={styles.columns}>
     <div className={styles.mh}>

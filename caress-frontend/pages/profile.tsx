@@ -73,6 +73,7 @@ export default function ProfileView() {
   
 	const getLatestQuizResult = async () => {
 	  try {
+		if (!latestQuizResult) {
 		const latestResultRef = firebase.firestore().collection('users').doc(user?.uid).collection('ocean-results')
 		  .orderBy('date', 'desc')
 		  .limit(1);
@@ -85,6 +86,7 @@ export default function ProfileView() {
 		} else {
 		  setLatestQuizResult(null);
 		}
+	}
 	  } catch (error) {
 		console.log('Error getting latest quiz result:', error);
 		setLatestQuizResult(null);

@@ -49,6 +49,9 @@ export default function mhr() {
 	useEffect(() => {
 		const getLatestQuizResults = async () => {
 		  try {
+			if (!latestQuizResult) {
+
+			
 			const latestResultsRef = firebase.firestore().collection('users').doc(user?.uid).collection('caress-results')
 			  .orderBy('date', 'desc')
 			  .limit(5);
@@ -59,7 +62,9 @@ export default function mhr() {
 		
 			// Set state to the latest quiz results, or null if the array is empty
 			setLatestQuizResult(latestResults.length > 0 ? latestResults : null);
-		  } catch (error) {
+		  }
+		}
+		   catch (error) {
 			console.log('Error getting latest quiz results:', error);
 			setLatestQuizResult(null);
 		  }

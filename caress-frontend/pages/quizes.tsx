@@ -8,7 +8,7 @@ import auth from '@/firebase/detectSignin';
 
 export default function Quiz() {
 
-	auth.isLoggedIn();
+	//auth.isLoggedIn();
 
 	const router = useRouter();
 	const [user, setUser] = useState<firebase.User | null>(null);
@@ -29,7 +29,7 @@ export default function Quiz() {
 			  };
 			//  getUser();
 			const User:any = await getUser();
-			if (User) {
+			if (User && !latestResult) {
 				const latestResultRef = firebase.firestore().collection('users').doc(User.uid).collection('caress-results')
 				  .orderBy('date', 'desc')
 				  .limit(1);
@@ -57,8 +57,16 @@ export default function Quiz() {
 
 	useEffect(() => {
 		async function OfetchLatestResult() {
+			const getUser = async () => {
+				const currentUser = await auth.isLoggedIn();
+				console.log('User object:', currentUser);
+				setUser(currentUser);
+				return currentUser;
+			  };
+			//  getUser();
+			const user:any = await getUser();
 			//const user = await fetchUser();
-			if (user) {
+			if (user && !OlatestResult) {
 				const OlatestResultRef = firebase.firestore().collection('users').doc(user.uid).collection('ocean-results')
 				  .orderBy('date', 'desc')
 				  .limit(1);
