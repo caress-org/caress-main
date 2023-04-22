@@ -101,7 +101,7 @@ export default function Quiz() {
       					  <li className={styles.q_li}>Conscientiousness</li>
       					  <li className={styles.q_li}>Extraversion</li>
       					  <li className={styles.q_li}>Agreeableness</li>
-      					  <li className={styles.q_li}>Agreeableness</li>
+      					  <li className={styles.q_li}>Neuroticism</li>
       					</ul>
     				</div>
 				</div>
