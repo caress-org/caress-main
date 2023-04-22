@@ -19,8 +19,12 @@ export default function Quiz() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	async function fetchUser() {
-		const user = await firebase.auth().currentUser;
-		return user;
+		return new Promise<firebase.User | null>((resolve) => {
+		  firebase.auth().onAuthStateChanged((user) => {
+			setUser(user);
+			resolve(user);
+		  });
+		});
 	}
 
 	useEffect(() => {
@@ -41,10 +45,37 @@ export default function Quiz() {
 				  setLatestResult(null);
 				  setDaysDiff(null);
 				}
+			} else {
+				//fetchLatestResult();
 			}
 			setIsLoading(false);
 		}
 		fetchLatestResult();
+	}, [now]);
+
+	const [OlatestResult, setOLatestResult] = useState<null | any>(null);
+
+
+	useEffect(() => {
+		async function OfetchLatestResult() {
+			const user = await fetchUser();
+			if (user) {
+				const OlatestResultRef = firebase.firestore().collection('users').doc(user.uid).collection('ocean-results')
+				  .orderBy('date', 'desc')
+				  .limit(1);
+				const snapshot = await OlatestResultRef.get();
+				if (!snapshot.empty) {
+				  const OlatestResultData = 1;
+				  setOLatestResult(OlatestResultData);
+				} else {
+				  setLatestResult(null);
+				}
+			} else {
+				//OfetchLatestResult();
+			}
+			setIsLoading(false);
+		}
+		OfetchLatestResult();
 	}, [now]);
 
 	if (isLoading) {
@@ -105,8 +136,11 @@ export default function Quiz() {
       					</ul>
     				</div>
 				</div>
-				<button className={styles.btn} onClick={ () => router.push('/quizes/ocean-quiz') }>Take Quiz</button>
-
+				{OlatestResult !== null ? (
+            <button className={styles.btn} onClick={ () => router.push('/quizes/ocean-quiz') }>Pay 5$ to retake the quiz</button>
+          ) : (
+            <button className={styles.btn} onClick={ () => router.push('/quizes/ocean-quiz') }>Take Quiz</button>
+			)}
 				</div>
 
 			
