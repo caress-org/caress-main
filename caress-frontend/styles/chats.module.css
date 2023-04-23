@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: row;
 	height: calc(100vh - 60px); /* 60px is the height of the bottom bar */
-  }
+}
   
   .chatList {
 	width: 25%;
@@ -30,7 +30,7 @@
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	background-color: #ccc;
+	background-color: whitesmoke;
 	margin-right: 10px;
 	display: flex;
 	flex-direction: column;
@@ -120,3 +120,25 @@
 	background-color: #ECDFF580;
 }
 
+.icon {
+	margin-left: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.headerr {
+	top: 0;
+	width: 100vw;
+	position: fixed;
+	height: 63px;
+	background-color: #ECDFF5;
+	display: flex;
+	/*flex-direction: row;*/
+	/*justify-content: space-between;*/
+	align-items: center;
+}
+
+.name {
+	font-size: 18px;
+	font-weight: 450;
+}

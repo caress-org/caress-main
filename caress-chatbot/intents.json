@@ -503,7 +503,7 @@
 	  },
 	  {
 		"tag": "suicidal_feelings",
-		"patterns": ["I'm feeling suicidal", "I want to end my life", "I'm thinking about suicide"],
+		"patterns": ["I'm feeling suicidal", "I want to end my life", "I'm thinking about suicide", "I want to suicide", "suicide", "i want to take my life, i want to die", "die"],
 		"responses": [
 		  "I'm so sorry to hear that you're struggling with suicidal thoughts. Your life is valuable and there is hope. It's brave of you to reach out for help. Let's talk about how you're feeling and how I can support you.",
 		  "I'm here to listen and support you. You don't have to go through this alone. Let's talk about what's been going on and how we can get you the help you need."
