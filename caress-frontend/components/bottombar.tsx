@@ -16,8 +16,8 @@ export default function Bottombar() {
       {/*<span>Home</span>*/}
     </div>
   </Link>
-  <Link href="/chat">
-    <div className={router.pathname === '/chat' ? styles.active : ''}>
+  <Link href="/chats">
+    <div className={router.pathname === '/chats' ? styles.active : ''}>
       <LucideMessageSquare className='icons' />
       {/*<span>Profile</span>*/}
     </div>

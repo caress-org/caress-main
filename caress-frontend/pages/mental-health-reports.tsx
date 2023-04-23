@@ -96,8 +96,8 @@ export default function mhr() {
 		</div>
 
 		{latestQuizResult?.map((result, index) => (
-    //  <div key={index} className="card">
-        <div key={index} className={styles.card}>
+      <div key={index}>
+        <div className={styles.card}>
   <div className={styles.columns}>
     <div className={styles.mh}>
 		{result.date}
@@ -115,7 +115,8 @@ export default function mhr() {
     </div>
   </div>
 </div>
-    //  </div>
+<br />
+    </div>
     ))}
 
 		</>

@@ -88,7 +88,7 @@ export default function Home() {
 		checkAuthentication();
 	  }, []);
 
-	  console.log('hello')
+	  console.log('hello');
 	return (
 		<>
 		<Head>
