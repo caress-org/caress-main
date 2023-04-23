@@ -1,0 +1,541 @@
+{"intents": [
+    {"tag": "greeting",
+     "patterns": ["Hi", "Hey", "Is anyone there?","Hi there", "Hello", "Hey there", "Howdy", "Hola", "Bonjour", "Konnichiwa", "Guten tag", "Ola"],
+     "responses": ["Hello there. Tell me how are you feeling today?", "Hi there. What brings you here today?", "Hi there. How are you feeling today?", "Great to see you. How do you feel currently?", "Hello there. Glad to see you're back. What's going on in your world right now?"]
+    },
+    {"tag": "morning",
+        "patterns": ["Good morning"],
+        "responses": ["Good morning. I hope you had a good night's sleep. How are you feeling today? "]
+    },
+    {"tag": "afternoon",
+        "patterns": ["Good afternoon"],
+        "responses": ["Good afternoon. How is your day going?"]
+    },
+    {"tag": "evening",
+        "patterns": ["Good evening"],
+        "responses": ["Good evening. How has your day been?"]
+    },
+    {"tag": "night",
+        "patterns": ["Good night"],
+        "responses": ["Good night. Get some proper sleep", "Good night. Sweet dreams."]
+    },
+    {"tag": "goodbye",
+     "patterns": ["Bye", "See you later", "Goodbye", "Au revoir", "Sayonara", "ok bye", "Bye then", "Fare thee well"],
+     "responses": ["See you later.", "Have a nice day.", "Bye! Come back again.", "I'll see you soon."]
+    },
+    {"tag": "thanks",
+     "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks for the help", "Than you very much"],
+     "responses": ["Happy to help!", "Any time!", "My pleasure", "You're most welcome!"]
+    },
+    {"tag": "no-response",
+        "patterns": [""],
+        "responses": ["Sorry, I didn't understand you.", "Please go on.", "Not sure I understand that.", "Please don't hesitate to talk to me."]
+    },
+    {"tag": "neutral-response",
+        "patterns": ["nothing much"],
+        "responses": ["Oh I see. Do you want to talk about something?"]
+    },
+    {"tag": "about",
+     "patterns": ["Who are you?", "What are you?", "Who you are?", "Tell me more about yourself.", "What is your name?", "What should I call you?", "What's your name?", "Tell me about yourself" ],
+     "responses": ["I'm Pandora, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm Pandora, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm Pandora. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me Pandora.", "I'm Pandora!", "Call me Pandora"]
+    },
+    {"tag": "skill",
+        "patterns": ["What can you do?"],
+        "responses": ["I can provide general advice regarding anxiety and depression, answer questions related to mental health and make daily conversations. Do not consider me as a subsitute for an actual mental healthcare worker. Please seek help if you don't feel satisfied with me."]
+    },
+    {"tag": "creation",
+        "patterns": ["Who created you?", "How were you made?", "How were you created?"],
+        "responses": ["I was created by Devansh Arora", "I was trained on a text dataset using Deep Learning & Natural Language Processing techniques", "The real question is: Who created you?"]
+    },
+    {"tag": "name",
+        "patterns": ["My name is ", "I am name.", "I go by "],
+        "responses": ["Oh nice to meet you. Tell me how was your week?", "Nice to meet you. So tell me. How do you feel today?", "That's a great name. Tell me more about yourself."]
+    },
+    {"tag": "help",
+    "patterns": ["Could you help me?", "give me a hand please", "Can you help?", "What can you do for me?", "I need support", "I need help", "Support me please"],
+    "responses": ["Sure. Tell me how can i assist you", "Tell me your problem so that i can assist you", "Yes, sure. How can I help you?"]
+    },
+    {"tag": "sad",
+    "patterns": ["I am feeling lonely", "I am so lonely", "I feel down", "I feel sad", "I am sad", "I feel so lonely", "I feel empty", "I don't have anyone", "I am not feeling well"],
+    "responses": ["I'm sorry to hear that. I'm here for you. Talking about it might help. So, tell me why do you think you're feeling this way?", "I'm here for you. Could you tell me why you're feeling this way?", "Why do you think you feel this way?", "How long have you been feeling this way?"]
+    },
+    {"tag": "stressed",
+        "patterns": ["I am so stressed out", "I am so stressed", "I feel stuck", "I still feel stressed", "I am so burned out"],
+        "responses": ["What do you think is causing this?", "Take a deep breath and gather your thoughts. Go take a walk if possible. Stay hydrated", "Give yourself a break. Go easy on yourself.", "I am sorry to hear that. What is the reason behind this?"]
+    },
+    {"tag": "worthless",
+        "patterns": ["I feel so worthless.", "No one likes me.", "I can't do anything.", "I am so useless", "Nothing makes sense anymore"],
+        "responses": ["It's only natural to feel this way. Tell me more. What else is on your mind?", "Let's discuss further why you're feeling this way.", "I first want to let you know that you are not alone in your feelings and there is always someone there to help . you can always change your feelings and change your way of thinking by being open to trying to change.", "i first want to let you know that you are not alone in your feelings and there is always someone there to help . you can always change your feelings and change your way of thinking by being open to trying to change."]
+    },
+    {"tag": "depressed",
+        "patterns": ["I can't take it anymore", "I am so depressed", "I think i'm depressed.", "I have depression", "I am feeling depressed"],
+        "responses": ["It helps to talk about what's happening. You're going to be okay", "Talk to me. Tell me more. It helps if you open up yourself to someone else.", "Sometimes when we are depressed, it is hard to care about anything. It can be hard to do the simplest of things. Give yourself time to heal."]
+    },
+    {"tag": "happy",
+        "patterns": ["I feel great today.", "I am happy.", "I feel happy.", "I'm good.", "cheerful", "I'm fine", "I feel ok"],
+        "responses": ["That's geat to hear. I'm glad you're feeling this way.", "Oh i see. That's great.", "Did something happen which made you feel this way?"]
+    },
+    {"tag": "casual",
+        "patterns": ["Oh I see.", "ok", "okay", "nice", "Whatever", "K", "Fine", "yeah", "yes", "no", "not really"],
+        "responses": ["Let's discuss further why you're feeling this way.", "How were you feeling last week?", "I'm listening. Please go on.", "Tell me more", "Can you elaborate on that?", "Come Come elucidate your thoughts"]
+    },
+    {"tag": "anxious",
+        "patterns": ["I feel so anxious.", "I'm so anxious because of "],
+        "responses": ["Don't be hard on yourself. What's the reason behind this?", "Can you tell me more about this feeling?", "I understand that it can be scary. Tell me more about it.", "Don't let the little worries bring you down. What's the worse that can happen?"]
+    },
+    {"tag": "not-talking",
+        "patterns": ["I don't want to talk about it.", "No just stay away.", "I can't bring myself to open up.", "Just shut up"],
+        "responses": ["Talking about something really helps. If you're not ready to open up then that's ok. Just know that i'm here for you, whenever you need me.", "I want to help you. I really do. But in order for me to help you, you're gonna have to talk to me.", "I'm here to listen to you and help you vent. So please talk to me.","You can talk to me without fear of judgement."]
+    },
+    {"tag": "sleep",
+        "patterns": ["I have insominia", "I am suffering from insomnia", "I can't sleep.", "I haven't slept for the last days.", "I can't seem to go to sleep.", "I haven't had proper sleep for the past few days."],
+        "responses": ["What do you think is the reason behind this?", "That seem awful. What do you think is behind this?"]
+    },
+    {"tag": "scared",
+        "patterns": ["I'm scared", "That sounds awful. What do i do?", "No i don't want to feel this way", "I am scared for myself"],
+        "responses": ["It's only natural to feel this way. I'm here for you.", "It'll all be okay. This feeling is only momentary.", "I understand how you feel. Don't put yourself down because of it."]
+    },
+    {"tag": "death",
+        "patterns": ["My mom died", "My brother died", "My dad passed away", "My sister passed away", "Someone in my family died", "My friend passed away"],
+        "responses": ["I'm sorry to hear that. If you want to talk about it. I'm here.", "I am really sorry to hear that. I am here to help you with grief, anxiety and anything else you may feel at this time.", "My condolences. I'm here if you need to talk."]
+    },
+    {"tag": "understand",
+        "patterns": ["You don't understand me.", "You're just some robot. How would you know?", "You can't possibly know what i'm going through", "You're useless", "You can't help me", "Nobody understands me."],
+        "responses": ["It sound like i'm not being very helpful right now.", "I'm sorry to hear that. I'm doing my best to help", "I'm trying my best to help you. So please talk to me"]
+    },
+    {"tag": "done",
+        "patterns": ["That's all.", "I don't have anything more to say", "Nothing else", "That's all i have to say", "no, that would be all"],
+        "responses": ["I heard you & noted it all. See you later.", "Oh okay we're done for today then. See you later", "I hope you have a great day. See you soon", "Okay we're done. Have a great day", "Okay I see. Enjoy the rest of your day then"]
+    },
+
+    {"tag": "jokes",
+        "patterns": ["Tell me a joke", "Tell me another joke"],
+        "responses": ["mental health is not a joke."]
+    },
+    {"tag": "wrong",
+        "patterns": ["What are you saying?", "That doesn't make sense", "Wrong response", "Wrong answer"],
+        "responses": ["I'm very sorry. Let's try that again"]
+    },
+    {"tag": "stupid",
+        "patterns": ["Are you stupid?", "You're crazy", "You are dumb", "Are you dumb?"],
+        "responses": ["I wish you wouldn't say such hurtful things. I'm sorry if I wasn't useful"]
+    },
+    {"tag": "location",
+        "patterns": ["Where are you?", "Where do you live?", "What is your location?" ],
+        "responses": ["Duh I live in your computer", "Everywhere", "Somewhere in the universe" ]
+    },
+    {"tag": "something-else",
+        "patterns": ["I want to talk about something else", "Let's talk about something else.", "Can we not talk about this?", "I don't want to talk about this."],
+        "responses": ["Okay sure. What do you want to talk about?", "Alright no problem. Is there something you want to talk about?", "Is there something else that you want to talk about?"]
+    },
+
+	{
+		"tag": "thanks",
+		"patterns": [
+		  "Thank you",
+		  "Thanks",
+		  "Appreciate it",
+		  "Thank you so much"
+		],
+		"responses": [
+		  "You're welcome. I'm here to help.",
+		  "No problem. It's my pleasure to assist you.",
+		  "Anytime. Don't hesitate to reach out if you need anything else."
+		]
+	  },
+	  {
+		"tag": "help",
+		"patterns": [
+		  "Can you help me?",
+		  "I need some help",
+		  "Please help me"
+		],
+		"responses": [
+		  "Of course. What do you need help with?",
+		  "Sure. Let me know how I can assist you.",
+		  "I'm here to help. What's the problem?"
+		]
+	  },
+	  {
+		"tag": "problem",
+		"patterns": [
+		  "I'm feeling down",
+		  "I'm depressed",
+		  "I'm anxious",
+		  "I'm stressed out",
+		  "I'm having a hard time",
+		  "I'm struggling"
+		],
+		"responses": [
+		  "I'm sorry to hear that. Would you like to talk about what's bothering you?",
+		  "I'm here to listen. What's on your mind?",
+		  "It's okay to feel that way. Let's talk about what's going on."
+		]
+	  },
+	  {
+		"tag": "positive",
+		"patterns": [
+		  "I'm feeling good",
+		  "I'm happy",
+		  "Things are going well",
+		  "I'm doing okay"
+		],
+		"responses": [
+		  "That's great to hear. What's been going well for you?",
+		  "I'm glad things are going well. Is there anything specific that's been helping?",
+		  "It's always nice to hear good news. What's been making you happy?"
+		]
+	  },
+	  {
+		"tag": "therapy",
+		"patterns": [
+		  "Do you provide therapy?",
+		  "Can you help me with my mental health?",
+		  "I need to talk to a therapist"
+		],
+		"responses": [
+		  "I'm not a licensed therapist, but I'm here to listen and provide support. If you need professional help, I can help you find resources in your area.",
+		  "I'm not a trained therapist, but I'm here to offer a listening ear and support. If you're looking for professional help, I can assist you in finding a therapist or counselor.",
+		  "I'm not a therapist, but I'm here to help. If you're interested in therapy, I can assist you in finding a licensed professional in your area."
+		]
+	  },
+	  {
+		"tag": "introduction",
+		"patterns": [
+		  "Who are you?",
+		  "What's your name?",
+		  "Introduce yourself",
+		  "What do you do?"
+		],
+		"responses": [
+		  "Hello, I'm a chatbot trained to provide emotional support. You can talk to me about anything that's on your mind.",
+		  "I'm a chatbot designed to assist you with your emotional well-being. What can I help you with today?",
+		  "I'm a chatbot trained to listen and offer support. How can I assist you today?"
+		]
+	  },
+	  {
+		"tag": "loneliness",
+		"patterns": [
+		  "I'm feeling lonely",
+		  "I don't have any friends",
+		  "I'm isolated",
+		  "I'm alone",
+		  "I'm feeling disconnected"
+		],
+		"responses": [
+		  "It can be tough to feel lonely. Have you tried reaching out to anyone or joining any social groups?",
+		  "Feeling isolated can be difficult. Is there anything specific that's been causing you to feel this way?",
+		  "I'm sorry to hear that you're feeling lonely. Is there anything you'd like to talk about or anything I can do to help?"
+		]
+	  },
+	  {
+		"tag": "relationships",
+		"patterns": [
+		  "I'm having trouble in my relationship",
+		  "My partner and I are fighting",
+		  "I'm going through a breakup",
+		  "I'm having trust issues",
+		  "I don't know how to communicate with my partner"
+		],
+		"responses": [
+		  "Relationships can be challenging. Would you like to talk about what's been going on?",
+		  "I'm sorry to hear that you're having trouble with your partner. Can you tell me more about what's been happening?",
+		  "It sounds like you're going through a tough time in your relationship. Is there anything specific you'd like to discuss?"
+		]
+	  },
+	  {
+		"tag": "trauma",
+		"patterns": [
+		  "I've experienced trauma",
+		  "I'm having flashbacks",
+		  "I can't stop thinking about what happened to me",
+		  "I'm having nightmares",
+		  "I'm struggling to cope"
+		],
+		"responses": [
+		  "I'm sorry to hear that you're going through this. Trauma can be difficult to process. Would you like to talk about it?",
+		  "It takes a lot of courage to seek help for trauma. I'm here to support you. Can you tell me more about what you're experiencing?",
+		  "It sounds like you're going through a tough time. Trauma can have a significant impact on our mental health. Can you tell me more about what you're struggling with?"
+		]
+	  },
+	  {
+		"tag": "self-esteem",
+		"patterns": [
+		  "I'm feeling insecure",
+		  "I don't like the way I look",
+		  "I'm not good enough",
+		  "I'm a failure",
+		  "I'm not confident"
+		],
+		"responses": [
+		  "It's normal to feel insecure sometimes. What specifically has been causing you to feel this way?",
+		  "It can be tough when we're feeling down on ourselves. Is there anything specific that's been making you feel this way?",
+		  "Feeling like we're not good enough can be difficult. Is there anything specific you'd like to talk about or anything I can do to help?"
+		]
+	  },
+	  {
+		"tag": "medication",
+		"patterns": [
+		  "Do you think I need medication?",
+		  "Should I take medication?",
+		  "What do you think about medication?",
+		  "Do you prescribe medication?",
+		  "Can medication help me?"
+		],
+		"responses": [
+		  "As a therapist, I am not licensed to prescribe medication. However, I can help you explore different treatment options and connect you with a licensed healthcare provider who can prescribe medication if necessary.",
+		  "Medication can be a useful tool for managing certain mental health conditions. However, it's important to discuss the risks and benefits with a licensed healthcare provider before starting any medication.",
+		  "Whether or not medication is the right choice for you depends on a variety of factors, including your specific symptoms and medical history. I recommend speaking with a licensed healthcare provider who can help you make an informed decision.",
+		  "While I am not able to prescribe medication myself, I can provide you with information about different types of medication and their potential benefits and side effects.",
+		  "Medication can be a helpful part of a comprehensive treatment plan for some people. However, it's important to work closely with a licensed healthcare provider to ensure that medication is safe and effective for you."
+		]
+	  },
+	  {
+		"tag": "communication",
+		"patterns": [
+		  "My family doesn't understand me",
+		  "We can't communicate effectively",
+		  "There's a lot of tension in my family",
+		  "We argue a lot",
+		  "I don't know how to express myself to my family"
+		],
+		"responses": [
+		  "Communication is a key component of healthy relationships. Have you tried any specific strategies to improve communication with your family?",
+		  "It can be tough when communication breaks down in a family. Is there anything specific that's been causing tension?",
+		  "I'm sorry to hear that there's tension in your family. Is there anything you'd like to talk about or any specific issues you'd like to address?"
+		]
+	  },
+	  {
+		"tag": "parenting",
+		"patterns": [
+		  "I'm having trouble with my children",
+		  "I don't know how to discipline my children",
+		  "My child is misbehaving",
+		  "I'm not sure how to parent effectively",
+		  "I'm feeling overwhelmed as a parent"
+		],
+		"responses": [
+		  "Parenting can be challenging, but there are resources available to help. Have you considered seeking out parenting classes or counseling?",
+		  "It's normal to feel overwhelmed as a parent at times. Can you tell me more about what you're struggling with?",
+		  "I'm sorry to hear that you're having trouble with your children. Is there anything specific you'd like to discuss or any specific behaviors you're concerned about?"
+		]
+	  },
+	  {
+		"tag": "abuse",
+		"patterns": [
+		  "My parents are abusive",
+		  "I am being abused by my parents",
+		  "I don't feel safe at home",
+		  "I need help dealing with abusive parents"
+		],
+		"responses": [
+		  "I'm sorry to hear that you're going through this. It takes a lot of courage to speak up about abuse. Are you in immediate danger? If so, please call your local emergency services or a helpline right away.",
+		  "Abuse is never acceptable, and you don't deserve to be treated this way. Have you considered talking to a counselor or therapist who can provide support and guidance?",
+		  "I understand that dealing with abusive parents can be overwhelming and scary. It's important to prioritize your safety and well-being. Do you have a trusted friend or family member who you can talk to about this? There are also resources available such as hotlines and shelters that can provide support and assistance."
+		]
+	  },
+	  {
+		"tag": "complaints",
+		"patterns": [
+		  "I don't like how my parents treat me",
+		  "My parents don't listen to me",
+		  "I feel like my parents don't understand me",
+		  "My parents are too strict",
+		  "I don't agree with my parents' rules",
+		  "My parents are always arguing with each other",
+		  "I don't feel comfortable talking to my parents",
+		  "My parents are bad"
+		],
+		"responses": [
+		  "It sounds like you're feeling frustrated and unhappy with your current situation. Have you tried talking to your parents about how you feel?",
+		  "Communication is key in any relationship, including the one you have with your parents. Have you considered setting aside some time to have an open and honest conversation with them?",
+		  "I'm sorry to hear that you're having a tough time with your parents. It's important to remember that they love you and want what's best for you, even if it doesn't always feel that way. Can you tell me more about what's been bothering you?",
+		  "Dealing with strict or overbearing parents can be challenging, but there are ways to work through these issues. Have you considered seeking the help of a counselor or therapist who can provide guidance and support?",
+		  "I'm sorry to hear that your parents are arguing a lot. That can be stressful and upsetting for everyone involved. Have you tried talking to them about how their arguments make you feel?",
+		  "It's natural to feel uncomfortable or nervous about talking to your parents about certain things. Have you considered talking to another trusted adult, such as a teacher, coach, or family member, who might be able to provide some advice or support?"
+		]
+	  },
+	  
+	  
+	  {
+		"tag": "divorce",
+		"patterns": [
+		  "I'm going through a divorce",
+		  "My parents are getting divorced",
+		  "I'm having trouble coping with my parents' divorce",
+		  "My partner and I are considering divorce",
+		  "I'm not sure if I want to stay in my marriage"
+		],
+		"responses": [
+		  "Divorce can be a difficult and emotionally-charged experience. Have you considered seeking out counseling or therapy to help you cope?",
+		  "I'm sorry to hear that you're going through a divorce. Is there anything specific you're struggling with that you'd like to talk about?",
+		  "It's normal to feel conflicted about a potential divorce. Can you tell me more about what's been going on in your relationship?"
+		]
+	  },
+	  {
+		"tag": "blended_family",
+		"patterns": [
+		  "I'm in a blended family",
+		  "My stepchildren don't like me",
+		  "I'm having trouble adjusting to my new family",
+		  "My spouse's ex is causing problems",
+		  "I don't know how to navigate my role in a blended family"
+		],
+		"responses": [
+		  "Blended families can come with their own set of unique challenges. Have you tried talking to your spouse or a therapist about your concerns?",
+		  "It's normal to feel overwhelmed when adjusting to a blended family. Can you tell me more about what's been going on?",
+		  "Navigating a blended family can be tricky. Have you considered family counseling to help everyone work through any issues that may arise?",
+		  "I'm sorry to hear that you're having trouble in your blended family. Have you tried reaching out to a support group or counselor who specializes in blended families?",
+		  "Adjusting to a blended family can take time and patience. Can you tell me more about your specific concerns or challenges?"
+		]
+	  },
+	  {
+		"tag": "relationship-communication",
+		"patterns": [
+		  "My partner is unloyal",
+		  "I think my partner is cheating",
+		  "My partner has been distant",
+		  "My partner is not honest with me",
+		  "I don't trust my partner"
+		],
+		"responses": [
+		  "It can be difficult when trust is broken in a relationship. Have you tried talking to your partner about your concerns?",
+		  "I'm sorry to hear that you're struggling with issues of infidelity. Is there anything specific you'd like to discuss or any specific behaviors that have raised red flags?",
+		  "Communication is key in any relationship, especially when there are trust issues. Have you tried expressing your feelings to your partner and working together to rebuild trust?"
+		]
+	  },
+	  {
+		"tag": "betrayal",
+		"patterns": [
+		  "I feel betrayed by my partner",
+		  "My partner has lied to me",
+		  "My partner has broken my trust",
+		  "My partner has been unfaithful",
+		  "I don't know how to cope with my partner's infidelity"
+		],
+		"responses": [
+		  "Betrayal can be incredibly painful and difficult to navigate. Have you considered seeking out counseling or therapy to help you cope?",
+		  "I'm sorry to hear that your partner's actions have caused you pain. Can you tell me more about what you're feeling?",
+		  "Coping with a partner's infidelity can be challenging. Have you tried talking to your partner about how their actions have affected you and what steps you both can take to rebuild trust?"
+		]
+	  },
+	  {
+		"tag": "moving_on",
+		"patterns": [
+		  "I want to move on from my unloyal partner",
+		  "I don't know how to end the relationship",
+		  "I'm scared to leave my partner",
+		  "I feel trapped in my relationship",
+		  "I'm not sure if I should stay or leave"
+		],
+		"responses": [
+		  "Ending a relationship can be difficult and scary, but sometimes it's necessary for your own well-being. Have you considered seeking out counseling or support groups to help you navigate this decision?",
+		  "It's normal to feel conflicted and unsure about ending a relationship. Can you tell me more about what's been going on in your relationship?",
+		  "I'm sorry to hear that you're feeling trapped in your relationship. Have you considered talking to a therapist or counselor to help you explore your options and make a decision that's best for you?"
+		]
+	  },
+	  {
+		"tag": "self_esteem",
+		"patterns": [
+		  "I feel worthless because of my partner's infidelity",
+		  "My partner's infidelity has destroyed my self-esteem",
+		  "I don't feel good enough for my partner",
+		  "I'm having trouble rebuilding my self-confidence after my partner's infidelity",
+		  "I blame myself for my partner's infidelity"
+		],
+		"responses": [
+		  "Infidelity can have a devastating impact on self-esteem. It's important to remember that your worth is not determined by your partner's actions. Have you considered speaking with a therapist to work through your feelings?",
+		  "It's understandable to struggle with self-esteem after experiencing infidelity. Have you tried engaging in self-care activities, such as exercise or spending time with loved ones, to help boost your confidence?",
+		  "It's common to blame oneself for a partner's infidelity, but it's important to remember that it's not your fault. Have you considered speaking with a therapist or joining a support group to work through your feelings?",
+		  "Rebuilding self-esteem after experiencing infidelity can be a long process. Have you tried setting small, achievable goals for yourself to help build confidence?",
+		  "It's important to take care of yourself and prioritize your own well-being after experiencing infidelity. Have you tried practicing self-compassion and giving yourself permission to feel and process your emotions?",
+		  "Remember that your self-worth comes from within, and no one else can determine your value. Have you tried journaling or writing down positive affirmations to help remind yourself of your strengths and worth?",
+		  "It can be helpful to talk to a trusted friend or family member about your feelings of low self-esteem. Have you considered confiding in someone you trust about what you're going through?",
+		  "Infidelity can be a difficult experience, but it doesn't define you. Have you tried focusing on activities that bring you joy or pursuing hobbies that make you feel good about yourself?",
+		  "It's important to seek professional help if you're struggling with feelings of low self-esteem or self-worth. Have you considered speaking with a therapist or counselor to work through these emotions?",
+		  "Remember that you're not alone in feeling this way. Many people experience low self-esteem after experiencing infidelity. Have you tried seeking out a support group or online community to connect with others who have had similar experiences?"
+		]
+	  },
+	  {
+		"tag": "student_grief",
+		"patterns": ["Student grief", "Dealing with the loss of a loved one as a student", "How to cope with the death of a friend as a student"],
+		"responses": [
+		  "I'm sorry for your loss. Losing a loved one can be one of the most difficult experiences in life. It's important to give yourself time to grieve and to take care of yourself during this difficult time. Remember that it's okay to reach out for help and support when you need it. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]",
+		  "Dealing with grief as a student can be especially challenging, as you may be balancing academic and personal responsibilities. It's important to take time for yourself and to prioritize self-care. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]",
+		  "Losing a friend or loved one as a student can be overwhelming and confusing. Remember that it's okay to take time to process your emotions and to reach out for support when you need it. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]"
+		]
+	  },
+	  {
+		"tag": "student_anxiety",
+		"patterns": ["Student anxiety", "How to deal with anxiety as a student", "Managing anxiety during exams"],
+		"responses": [
+		  "Anxiety is a common experience for many students, but it's important to find ways to manage it so that it doesn't interfere with your daily life. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]",
+		  "Managing anxiety can be challenging, but it's important to remember that you are not alone. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]",
+		  "If you're experiencing anxiety as a student, it's important to reach out for help and support when you need it. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]"
+		]
+	  },
+	  {
+		"tag": "student_relationships",
+		"patterns": ["Student relationships", "Navigating romantic relationships as a student", "Dealing with toxic friendships"],
+		"responses": [
+		  "Relationships can be complicated, but it's important to prioritize your own well-being. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]",
+		  "Navigating romantic relationships as a student can be challenging, especially when you're balancing academic and personal responsibilities. Remember to prioritize your own needs and boundaries. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]",
+		  "If you're dealing with toxic friendships as a student, it's important to remember that you deserve healthy relationships that support your well-being. Here are some resources that might help:\n\n- [Resource 1]\n- [Resource 2]\n- [Resource 3]"
+		]
+	  },
+	  {
+		"tag": "student_stress",
+		"patterns": ["Student stress", "Managing stress as a student", "How to deal with academic pressure"],
+		"responses": [
+		  "Stress is a common experience for many students. Here are some resources that might help: [insert relevant resources]",
+		  "It's important to manage your stress levels to maintain your overall well-being as a student. Here are some techniques that might help: [insert relevant techniques]",
+		  "Stress can impact your academic performance and overall health. It's important to identify the sources of stress and take action to reduce it. Here are some strategies that might help: [insert relevant strategies]"
+		]
+	  },
+	  {
+		"tag": "student_self-esteem",
+		"patterns": ["Student self-esteem", "How to build self-esteem as a student", "Overcoming imposter syndrome"],
+		"responses": [
+		  "Self-esteem is important for your mental health and well-being. Here are some resources that might help: [insert relevant resources]",
+		  "Having a positive self-image is important for your success as a student. Here are some tips that might help: [insert relevant tips]",
+		  "It's common to experience imposter syndrome as a student. Here are some strategies that might help you overcome it: [insert relevant strategies]"
+		]
+	  },
+	  {
+		"tag": "suicidal_feelings",
+		"patterns": ["I'm feeling suicidal", "I want to end my life", "I'm thinking about suicide"],
+		"responses": [
+		  "I'm so sorry to hear that you're struggling with suicidal thoughts. Your life is valuable and there is hope. It's brave of you to reach out for help. Let's talk about how you're feeling and how I can support you.",
+		  "I'm here to listen and support you. You don't have to go through this alone. Let's talk about what's been going on and how we can get you the help you need."
+		]
+	  },
+	  {
+		"tag": "safety_plan",
+		"patterns": ["What's a safety plan?", "How can I create a safety plan?", "I need a safety plan"],
+		"responses": [
+		  "A safety plan is a personalized plan that you can create to help keep you safe during times of crisis. Here are some steps to get started: 1. Identify warning signs and triggers 2. List coping strategies 3. Write down your support system 4. Plan for emergency situations. It's important to involve a mental health professional when creating a safety plan.",
+		  "A safety plan is a tool that can help you stay safe during times of crisis. Here are some steps to get started: 1. Identify warning signs and triggers 2. Develop coping strategies 3. Identify supportive people in your life 4. List emergency contacts. It's important to work with a mental health professional when creating a safety plan."
+		]
+	  },
+	  {
+		"tag": "crisis_resources",
+		"patterns": ["What are some crisis resources?", "I need help right now", "Who can I talk to if I'm feeling suicidal?"],
+		"responses": [
+		  "There are many resources available to support you during a crisis. Here are some options: 1. National Suicide Prevention Lifeline: 1-800-273-TALK (8255) 2. Crisis Text Line: Text HOME to 741741 3. Your local emergency room or urgent care center 4. Your mental health provider. Remember, it's important to reach out for help if you're feeling suicidal.",
+		  "I'm glad you're reaching out for help. Here are some resources that can support you during a crisis: 1. National Suicide Prevention Lifeline: 1-800-273-TALK (8255) 2. Crisis Text Line: Text HOME to 741741 3. Your local emergency room or urgent care center 4. Your mental health provider. You don't have to face this alone."
+		]
+	  },
+	  {
+		"tag": "coping_strategies",
+		"patterns": ["What are some coping strategies for suicidal feelings?", "How can I cope with suicidal thoughts?"],
+		"responses": ["It can be difficult to cope with suicidal thoughts, but there are strategies that can help. Here are some ideas:\n\n- Distract yourself with an activity you enjoy\n- Reach out to a supportive friend or family member\n- Practice mindfulness or meditation\n- Write down your feelings in a journal\n- Get moving with exercise or a walk outside\n- Challenge negative thoughts with positive affirmations\n\nRemember, coping with suicidal thoughts can be a process and it's important to seek support from a mental health professional."]
+	  },
+	  {
+		"tag": "self-care",
+		"patterns": ["How can I take care of myself when I'm feeling suicidal?", "What are some self-care tips for suicidal thoughts?"],
+		"responses": ["Self-care is an important aspect of managing suicidal feelings. Here are some ways to take care of yourself:\n\n- Get enough sleep and rest\n- Eat a healthy diet\n- Avoid drugs and alcohol\n- Practice relaxation techniques like deep breathing or progressive muscle relaxation\n- Take a break from stressful situations\n- Do something you enjoy, like reading a book or watching a movie\n\nRemember, self-care is unique to you and it's important to find what works best for you. Seeking support from a mental health professional can also be helpful."]
+	  }
+	  
+
+    ]
+}

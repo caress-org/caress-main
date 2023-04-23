@@ -1,0 +1,12 @@
+Flask==2.2.3
+Flask-Cors==3.0.10
+itsdangerous==2.1.2
+Jinja2==3.1.2
+torch==2.0.0
+torchaudio==2.0.1
+torchvision==0.15.1
+nltk
+click
+MarkupSafe
+Werkzeug
+gunicorn
