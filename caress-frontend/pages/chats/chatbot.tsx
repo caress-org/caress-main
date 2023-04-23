@@ -1,17 +1,37 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@/styles/chats.module.css';
-import { LucideArrowLeft, LucideUser } from 'lucide-react';
+import { LucideArrowLeft, LucideSend, LucideUser } from 'lucide-react';
 import { useRouter } from 'next/router';
 
 
 export default function ChatBot() {
+
+	interface User {
+		uid: string;
+		email: string | null;
+		displayName: string | null;
+		photoURL: string | null;
+		emailVerified: boolean;
+		phoneNumber: string | null;
+		isAnonymous: boolean;
+		tenantId: string | null;
+		providerData: any[];
+	  }
+
+	const [user, setUser] = useState<User | null>(null);
 
 	const router = useRouter();
 
 	const goBack = () => {
 		router.replace("/chats");
 	}
+
+	const sendMessage = () => {
+	}
+
+	const [formValue, setFormValue] = useState('');
+
 
 	return (
 		<>
@@ -29,6 +49,13 @@ export default function ChatBot() {
 				<p className={styles.name}>ChatBot</p>
 			</div>
 		</div>
+		<form className={styles.form} onSubmit={sendMessage}>
+
+      <input className={styles.input} value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Message..." />
+
+      <button className={styles.button} type="submit" disabled={!formValue}><LucideSend/></button>
+
+    </form>
 		</>
 	)
 }

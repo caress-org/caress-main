@@ -15,6 +15,10 @@ export default function Chats() {
 	const onClickFunction = () => {
 		router.replace('/chats/chatbot');
 	}
+
+	const goBack = () => {
+		router.replace('/home');
+	}
 	
 	return (
 		<>
@@ -25,7 +29,7 @@ export default function Chats() {
 		</Head>
 		<div className={styles.header}>
 			<div className={styles.top}>
-				<LucideArrowLeft className={styles.arrow}/>
+				<LucideArrowLeft onClick={goBack} className={styles.arrow}/>
 				<p>Chats</p>
 			</div>
 		</div>
