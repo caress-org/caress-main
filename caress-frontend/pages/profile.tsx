@@ -156,7 +156,7 @@ export default function ProfileView() {
           {/*<p>{(user as any)?.email ?? 'Unknown'}</p>*/}
         </div>
 		</div>
-		<LucideSettings style={{marginRight: '10px'}}/>
+		<LucideSettings onClick={() => router.replace('/settings')} style={{marginRight: '10px'}}/>
         {/*<h1>Profile</h1>*/}
         {/*<button className={styles.signout_btn} onClick={handleLogout}>Log Out</button>*/}
       </div>
