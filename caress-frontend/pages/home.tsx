@@ -76,7 +76,7 @@ export default function Home() {
 						.firestore()
 						.collection('users')
 						.doc(currentUser.uid)
-						.collection('mood').orderBy('date', 'desc').limit(1);
+						.collection('mood').orderBy('date', 'asc').limit(1);
 					const snapshot = await emojiRef.get();
 					if (snapshot.empty) {
 						console.log('emoji not done');
@@ -84,8 +84,6 @@ export default function Home() {
 					}
 					if (!snapshot.empty && snapshot.docs[0].data().date == today) {
 						setEmojiDone(true);
-					} else {
-						setEmojiDone(false);
 					}
 				
 				}

@@ -45,9 +45,16 @@ export default function ProfileView() {
 	neuroticism: number;
 	traits: Array<string>;
   }
+
+  interface Mood {
+	date: string;
+	mood: string;
+  }
   
 
   const [latestQuizResult, setLatestQuizResult] = useState<QuizResult | null>(null);
+
+  const [moods, setMoods] = useState<Mood[]>([]);
 
   useEffect(() => {
 	const getUser = async () => {
@@ -73,6 +80,21 @@ export default function ProfileView() {
   
 	const getLatestQuizResult = async () => {
 	  try {
+
+		const today = new Date().toDateString();
+
+		const emojiRef = firebase
+						.firestore()
+						.collection('users')
+						.doc(user?.uid)
+						.collection('mood').orderBy('date', 'asc').limit(7);
+					const snapshot = await emojiRef.get();
+					if (snapshot.empty) {
+						console.log('emoji not done');
+					}
+					if (!snapshot.empty) {
+						setMoods(snapshot.docs.map((doc) => doc.data() as Mood));
+					}
 		if (!latestQuizResult) {
 		const latestResultRef = firebase.firestore().collection('users').doc(user?.uid).collection('ocean-results')
 		  .orderBy('date', 'desc')
@@ -148,6 +170,26 @@ export default function ProfileView() {
 		</div>
       </div>
     </div>
+	<div className={styles.card}>
+	<div className={styles.title}>
+		Past Moods
+	</div>
+	{moods?.map((mood, index) => (
+		<div>
+			<br />
+			<div className={styles.row}>
+				<div className={styles.title} style={{fontSize: '18px', fontWeight: '420', color: 'black'}}>
+					{mood.date}
+				</div>
+				<div className={styles.emoji}>
+					{mood.mood}
+				</div>
+			</div>
+			{/*<br />*/}
+		</div>
+	))}
+	</div>
+	<br />
 	{latestQuizResult && (
 <div className={styles.card}>
   <div className={styles.columns}>

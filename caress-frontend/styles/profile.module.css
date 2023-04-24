@@ -169,3 +169,7 @@
 	text-align: center;
   }
   
+  .emoji {
+	display: flex;
+	margin-bottom: 20px;
+  }
