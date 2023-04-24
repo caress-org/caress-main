@@ -57,6 +57,12 @@ export default function ProfileView() {
 
   const [moods, setMoods] = useState<Mood[]>([]);
 
+  const [isTherapist, setIsTherapist] = useState(false);
+
+  interface Therapist {
+	exists: boolean;
+  }
+
   useEffect(() => {
 	const getUser = async () => {
 	  const currentUser = await auth.isLoggedIn();
@@ -80,6 +86,14 @@ export default function ProfileView() {
 	checkAuthentication();
   
 	const getLatestQuizResult = async () => {
+		try{
+	const isTherapistRef = ((await firebase.firestore().collection('therapists').doc(user?.uid).get()).data() as Therapist).exists;
+	if (isTherapistRef) {
+	setIsTherapist(true);
+	}
+} catch(e) {
+	
+}
 	  try {
 
 		const today = new Date().toDateString();
@@ -139,6 +153,14 @@ export default function ProfileView() {
 	router.replace('/mental-health-reports');
   }
 
+  const therapist = () => {
+	if (isTherapist) {
+		router.replace('/therapist');
+	} else {
+		router.replace('/therapist-profile');
+	}
+  }
+
 
 
   return (
@@ -172,9 +194,9 @@ export default function ProfileView() {
       </div>
     </div>
 	<div className={styles.container} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '5px'}}>
-	<Link className={styles.link} href="/therapist-profile">
+	<a className={styles.link} onClick={therapist}>
 		Are you a Licensed Therapist?
-	</Link>
+	</a>
 	</div>
 	<div className={styles.card}>
 	<div className={styles.title}>

@@ -5,6 +5,7 @@ import 'firebase/compat/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import auth from '@/firebase/detectSignin';
+import Head from 'next/head';
 
 export default function Login() {
 
@@ -58,6 +59,11 @@ export default function Login() {
 
 	return (
 		<>
+		<Head>
+			<title>
+				Login | Caress
+			</title>
+		</Head>
 			<div className={styles.center}>
 			<img src="/caress-login-0.png" alt="caress" className='login-jpg' />
 		    </div>
