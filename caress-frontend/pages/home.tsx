@@ -7,6 +7,7 @@ import TopBar from '@/components/topbar';
 import Bottombar from '@/components/bottombar';
 import styles from '@/styles/home.module.css';
 import Link from 'next/link';
+import { orderBy } from 'firebase/firestore';
 
 export default function Home() {	
 
@@ -37,6 +38,7 @@ export default function Home() {
 	  const [user, setUser] = useState<User | null>(null);
 	  const [latestQuizResult, setLatestQuizResult] = useState<QuizResult | null>(null);
 	  const [quizResultLoaded, setQuizResultLoaded] = useState<boolean>(false);
+	  const [emojiDone, setEmojiDone] = useState<boolean>(false);
 
 	const router = useRouter();
 	const handleLogout = async () => {
@@ -49,7 +51,12 @@ export default function Home() {
 	  };
 
 	  const handleEmotionClick = async (emotion: string) => {
-	  }
+		firebase.firestore().collection('users').doc(user?.uid).collection('mood').doc(new Date().toDateString()).set({
+			mood: emotion,
+			date: new Date().toDateString()
+		})
+		setEmojiDone(true);
+	}
 
 	  useEffect(() => {
 		const checkAuthentication = async () => {
@@ -59,6 +66,29 @@ export default function Home() {
 			setUser(currentUser);
 	  
 			if (currentUser) {
+				console.log(emojiDone);
+				const today = new Date().toDateString();
+				if (emojiDone == false) {
+					console.log('emoji not done');
+					// Check if the user's emoji is already cached
+
+					const emojiRef = firebase
+						.firestore()
+						.collection('users')
+						.doc(currentUser.uid)
+						.collection('mood').orderBy('date', 'desc').limit(1);
+					const snapshot = await emojiRef.get();
+					if (snapshot.empty) {
+						console.log('emoji not done');
+						setEmojiDone(false);
+					}
+					if (!snapshot.empty && snapshot.docs[0].data().date == today) {
+						setEmojiDone(true);
+					} else {
+						setEmojiDone(false);
+					}
+				
+				}
 			  // Check if latest quiz result is already cached
 			  if (!latestQuizResult) {
 				// Fetch the latest quiz result from Firestore
@@ -107,23 +137,26 @@ export default function Home() {
     <div className={styles.welcome}>
       Welcome Back 👋
     </div>
-	<div className={styles.card}>
-  <div className={styles.title}>How are you feeling today?</div>
-  <div className={styles.emotions}>
-    <div className={styles.emotion} onClick={() => handleEmotionClick('😀')}>
-      <span role="img" aria-label="Happy">😀</span>
-    </div>
-    <div className={styles.emotion} onClick={() => handleEmotionClick('😔')}>
-      <span role="img" aria-label="Sad">😔</span>
-    </div>
-    <div className={styles.emotion} onClick={() => handleEmotionClick('😡')}>
-      <span role="img" aria-label="Angry">😡</span>
-    </div>
-    <div className={styles.emotion} onClick={() => handleEmotionClick('😴')}>
-      <span role="img" aria-label="Sleepy">😴</span>
-    </div>
-  </div>
-</div>
+	{emojiDone == false && (
+		<div className={styles.card}>
+		<div className={styles.title}>How are you feeling today?</div>
+		<div className={styles.emotions}>
+		  <div className={styles.emotion} onClick={() => handleEmotionClick('😀')}>
+			<span role="img" aria-label="Happy">😀</span>
+		  </div>
+		  <div className={styles.emotion} onClick={() => handleEmotionClick('😔')}>
+			<span role="img" aria-label="Sad">😔</span>
+		  </div>
+		  <div className={styles.emotion} onClick={() => handleEmotionClick('😡')}>
+			<span role="img" aria-label="Angry">😡</span>
+		  </div>
+		  <div className={styles.emotion} onClick={() => handleEmotionClick('😴')}>
+			<span role="img" aria-label="Sleepy">😴</span>
+		  </div>
+		</div>
+	  </div>
+	)}
+	
 
 {quizResultLoaded && latestQuizResult && (
 <div className={styles.container}>
