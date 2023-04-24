@@ -202,7 +202,7 @@
   }
   
 .text {
-	max-width: 500px;
+	max-width: 80vw;
 	margin-bottom: 12px;
 	line-height: 24px;
 	padding: 10px 20px;
@@ -210,11 +210,14 @@
 	position: relative;
 	color: black;
 	text-align: center;
+	word-wrap: break-word;
 }
 
 .message {
 	display: flex;
 	align-items: center;
+	/*flex-direction: row;*/
+	/*justify-content: center;*/
   }
   
   .sent {
@@ -236,6 +239,7 @@
   height: 40px;
   border-radius: 50%;
   margin: 2px 5px;
+  margin-bottom: 12px;
 }
 
 .messageArea {
@@ -249,3 +253,17 @@
   /*flex-grow: ;*/
   /*padding: 1rem;*/
 }
+
+.chatAvatars {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: whitesmoke;
+	margin-right: 5px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-left: 5px;
+	margin-bottom: 12px;
+  }

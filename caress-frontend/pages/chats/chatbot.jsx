@@ -37,8 +37,11 @@ export default function ChatBot() {
   const dummy = useRef();
 	const firestore = firebase.firestore();
   const messagesRef = firestore.collection('users').doc(user?.uid).collection('chatbot');
-  const query = messagesRef.orderBy('createdAt').limit(25);
-  const [messages] = useCollectionData(query, { idField: 'id' });
+  const query = messagesRef.orderBy('createdAt',  'desc').limit(25);
+
+  let [messages] = useCollectionData(query, { idField: 'id' });
+	messages = messages?.reverse();
+	const [data, setData] = useState("");
 
   useEffect(() => {
 		const authenticate = async () => {
@@ -62,6 +65,33 @@ export default function ChatBot() {
       photoURL,
     });
 
+		fetch('https://caress-chatbot.devansharora.repl.co/predict', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    'api-key': '0000000000',
+    'message': formValue
+  })
+})
+.then(response => response.json())
+.then(async data => {
+  console.log(data.answer);
+	data = data.answer;
+	await messagesRef.add({
+		text: data,
+		createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+		//uid,
+		//photoURL,
+	});
+})
+.catch(error => {
+  console.error(error);
+});
+
+
+
     setFormValue('');
     dummy.current.scrollIntoView({ behavior: 'smooth' });
   };
@@ -77,7 +107,7 @@ export default function ChatBot() {
 	
 		return (<>
 <div className={`${styles.message} ${messageClass}`}>
-				<img className={styles.img} src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+{photoURL ? <img className={styles.img} src={photoURL} /> : <div className={styles.chatAvatars}> <LucideUser/> </div>}
 				<p className={styles.text}>{text}</p>
 			</div>
 		</>)
