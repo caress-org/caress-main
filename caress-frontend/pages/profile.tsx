@@ -61,6 +61,7 @@ export default function ProfileView() {
 
   interface Therapist {
 	exists: boolean;
+	bio: string;
   }
 
   useEffect(() => {
@@ -92,7 +93,7 @@ export default function ProfileView() {
 	setIsTherapist(true);
 	}
 } catch(e) {
-	
+
 }
 	  try {
 
@@ -155,7 +156,7 @@ export default function ProfileView() {
 
   const therapist = () => {
 	if (isTherapist) {
-		router.replace('/therapist');
+		router.replace('/profile/therapist');
 	} else {
 		router.replace('/therapist-profile');
 	}
