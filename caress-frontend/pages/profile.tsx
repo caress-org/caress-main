@@ -6,6 +6,7 @@ import Bottombar from '@/components/bottombar';
 import firebase from '@/firebase/clientApp';
 import Head from 'next/head';
 import { LucideArrowRight, LucideSettings } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ProfileView() {
 
@@ -170,6 +171,11 @@ export default function ProfileView() {
 		</div>
       </div>
     </div>
+	<div className={styles.container} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '5px'}}>
+	<Link className={styles.link} href="/therapist-profile">
+		Are you a Licensed Therapist?
+	</Link>
+	</div>
 	<div className={styles.card}>
 	<div className={styles.title}>
 		Past Moods

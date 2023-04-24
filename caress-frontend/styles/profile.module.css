@@ -173,3 +173,57 @@
 	display: flex;
 	margin-bottom: 20px;
   }
+
+  .link {
+	color: #6c63ff;
+	text-decoration: none;
+	font-weight: bold;
+  }
+  
+  .link:hover {
+	  text-decoration: underline;
+	}
+
+ 
+	.forms{
+		width: 80%;
+		  }
+		  
+		  .forms .label{
+		font-size: 1.2rem;
+		color: #000;
+		  }
+		  
+		  .input, .textarea, .button {
+		width: 100%;
+		padding: 0.5em;
+		border: none;
+		font-size: 1.2rem;
+		color: black;
+		  }
+		  .input[type="text"], .input[type="email"], .textarea {
+		margin: 0 0 1em;
+		border: 1px solid #ccc;
+		outline: none;
+		  }
+		  
+		  .textarea {
+		height: 6em;
+		  }
+		  .input[type="submit"], .button {
+		background: #4570F3;
+		color: #fff;
+		cursor: pointer;
+		  }
+		  .input[type="submit"]:hover, .button:hover {
+		background: #6E65F4;
+		  }
+	.label {
+		color: white;
+	}
+	
+	.contact {
+		display: flex;
+		justify-content: center;
+		padding-top: 30px;
+	}
