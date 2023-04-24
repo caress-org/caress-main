@@ -67,6 +67,23 @@ export default function ChatBot() {
   };
 
 
+	const photoURL = user?.photoURL;
+
+	function ChatMessage(props) {
+		//const { text, uid } = props.message;
+		const { text, uid, photoURL } = props.message;
+	
+		const messageClass = uid === user.uid ? styles.sent : styles.received;
+	
+		return (<>
+<div className={`${styles.message} ${messageClass}`}>
+				<img className={styles.img} src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+				<p className={styles.text}>{text}</p>
+			</div>
+		</>)
+	}
+	
+
 
 	return (
 		<>
@@ -84,8 +101,9 @@ export default function ChatBot() {
 				<p className={styles.name}>ChatBot</p>
 			</div>
 		</div>
+		<div className={styles.messageArea}>
 		{messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-
+		</div>
 <span ref={dummy}></span>
 		<form className={styles.form} onSubmit={sendMessage}>
 
@@ -98,15 +116,3 @@ export default function ChatBot() {
 	)
 }
 
-function ChatMessage(props) {
-	const { text, uid } = props.message;
-
-	//const messageClass = uid === user.uid ? 'sent' : 'received';
-
-	return (<>
-		<div className={styles.message}>
-			{/*<img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />*/}
-			<p className={styles.text}>{text}</p>
-		</div>
-	</>)
-}
