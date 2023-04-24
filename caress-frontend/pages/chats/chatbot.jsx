@@ -53,6 +53,10 @@ export default function ChatBot() {
 		authenticate();
   }, []);
 
+	useEffect(() => {
+    dummy.current.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   const sendMessage = async (e) => {
     e.preventDefault();
 
@@ -86,9 +90,13 @@ export default function ChatBot() {
 		//photoURL,
 	});
 })
+.then(
+	dummy.current.scrollIntoView({ behavior: 'smooth' })
+)
 .catch(error => {
   console.error(error);
 });
+
 
 
 
