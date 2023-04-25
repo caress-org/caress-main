@@ -114,7 +114,7 @@ export default function Home() {
 		};
 	  
 		checkAuthentication();
-	  }, []);
+	  }, [user]);
 
 	  console.log('hello');
 	return (
