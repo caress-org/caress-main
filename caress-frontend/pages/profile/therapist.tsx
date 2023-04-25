@@ -28,6 +28,7 @@ export default function TherapistView() {
 		bio: string;
 		photoURL: string;
 		name: string;
+		uid: string;
 	  }
 
 	const [user, setUser] = useState<User | null>(null);
@@ -78,10 +79,11 @@ export default function TherapistView() {
 				photoURL : photoURL,
 				bio: bio,
 				exists: true,
-				name: name
+				name: name,
+				uid: user?.uid
 			  })
 		  })
-	}, [])
+	}, [user])
 
 	return (
 		<>

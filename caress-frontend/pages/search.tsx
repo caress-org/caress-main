@@ -6,6 +6,7 @@ import { LucideSearch, LucideMessageSquare } from 'lucide-react';
 import { useRouter } from 'next/router';
 import firebase from '@/firebase/clientApp';
 import auth from '@/firebase/detectSignin'
+import { query } from 'firebase/firestore';
 
 export default function Search() {
 
@@ -28,6 +29,7 @@ export default function Search() {
 		bio: string;
 		photoUrl: string;
 		name: string;
+		uid:  string;
 	  }
 
 	  const [user, setUser] = useState<User | null>(null);
@@ -35,6 +37,15 @@ export default function Search() {
 	  const [isLoading, setIsLoading] = useState(true);
 	  const [therapistUids, setTherapistUids] = useState<string[]>([]);
 
+
+	  const textTherapist = (therapist: Therapist) => {
+		router.replace({
+			pathname: '/chat',
+			query: {
+			  therapistUid: therapist.uid
+			}
+		  });	  }
+  
 
 	  useEffect(() => {
 		const getUser = async () => {
@@ -98,7 +109,7 @@ export default function Search() {
 		</div>
 		</div>
 		<div>
-			<LucideMessageSquare></LucideMessageSquare>
+			<LucideMessageSquare onClick={() => textTherapist(therapist)}></LucideMessageSquare>
 		</div>
 				</div>
 			</div>
