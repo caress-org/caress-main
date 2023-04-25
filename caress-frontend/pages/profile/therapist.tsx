@@ -26,6 +26,8 @@ export default function TherapistView() {
 	  interface Therapist {
 		exists:  boolean;
 		bio: string;
+		photoURL: string;
+		name: string;
 	  }
 
 	const [user, setUser] = useState<User | null>(null);
@@ -55,13 +57,31 @@ export default function TherapistView() {
 		  };
 		  checkAuthentication();
 
+		  const photoURL = user.photoURL;
+		  const name = user.displayName;
+		  
+
 		  const therapistBio = async () => {
 			const isTherapistRef = ((await firebase.firestore().collection('therapists').doc(user?.uid).get()).data() as Therapist);
 			setTherapist(isTherapistRef);
+			const bio = isTherapistRef.bio;
+			return  bio
 		  }
 
-		  therapistBio();
-	})
+		  
+
+
+		  const bio = therapistBio();
+
+		  bio.then((bio) => {
+			firebase.firestore().collection('therapists').doc(user?.uid).set({
+				photoURL : photoURL,
+				bio: bio,
+				exists: true,
+				name: name
+			  })
+		  })
+	}, [])
 
 	return (
 		<>

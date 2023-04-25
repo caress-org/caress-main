@@ -2,7 +2,7 @@ import Bottombar from '@/components/bottombar';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import styles from '@/styles/search.module.css';
-import { LucideSearch } from 'lucide-react';
+import { LucideSearch, LucideMessageSquare } from 'lucide-react';
 import { useRouter } from 'next/router';
 import firebase from '@/firebase/clientApp';
 import auth from '@/firebase/detectSignin'
@@ -26,12 +26,15 @@ export default function Search() {
 	  interface Therapist {
 		exists:  boolean;
 		bio: string;
+		photoUrl: string;
+		name: string;
 	  }
 
 	  const [user, setUser] = useState<User | null>(null);
-	  const [therapist, setTherapist] = useState<Therapist | null>(null);
+	  const [therapist, setTherapist] = useState<Therapist[]>([]);
 	  const [isLoading, setIsLoading] = useState(true);
 	  const [therapistUids, setTherapistUids] = useState<string[]>([]);
+
 
 	  useEffect(() => {
 		const getUser = async () => {
@@ -57,14 +60,17 @@ export default function Search() {
 
 		  const therapists = async () => {
 			const querySnapshot = await firebase.firestore().collection('therapists').limit(25).get();
-			const therapistUids = querySnapshot.docs.map((doc) => doc.id);
-			console.log(`uid = ${therapistUids}`);
-			setTherapistUids(therapistUids);
+      const therapistsData = querySnapshot.docs.map(doc => doc.data() as Therapist);
+      setTherapist(therapistsData);
+      setIsLoading(false);
 			// setTherapist(therapistUids);
 		  }
 
-		  therapists();
-	}, [])
+		  
+			therapists();
+	}, [therapist, therapistUids, firebase, user])
+
+	console.log();
 
     return (
         <>
@@ -78,6 +84,26 @@ export default function Search() {
 			<LucideSearch/>
 			</div>
 		</div>
+		{therapist.map((therapist, index) => (
+			<div className={styles.card} key={index}>
+				<div className={styles.row}>
+				<img style={{borderRadius: "50%"}} src={(therapist as any)?.photoURL} alt="Profile picture" />
+		<div className={styles.column}>
+		
+		<div className={styles.title}>
+			{(therapist as any)?.name}
+		</div>
+		<div>
+			{therapist?.bio}
+		</div>
+		</div>
+		<div>
+			<LucideMessageSquare></LucideMessageSquare>
+		</div>
+				</div>
+			</div>
+		))
+		}
 		<Bottombar/>
 		</>
     )
