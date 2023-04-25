@@ -33,9 +33,9 @@ export default function ChatBot() {
     authenticate();
   }, []);
 
-	const { therapistUid } = router.query;
+	const { therapistUid, therapistName, therapistPhotoUrl } = router.query;
   const therapistId = therapistUid; // Update this with the selected therapist's ID
-  const messagesRef = firestore.collection('users').doc(user?.uid).collection('chat').doc(therapistId).collection('messages');
+	const messagesRef = firestore.collection('users').doc(user?.uid).collection('chat').doc(therapistId).collection('messages');
   const query = messagesRef.orderBy('createdAt',  'desc').limit(25);
 	let [messages] = useCollectionData(query, { idField: 'id' });
   messages = messages?.reverse();
@@ -57,6 +57,16 @@ export default function ChatBot() {
       displayName,
       photoURL,
     });
+
+		firestore.collection('users').doc(user?.uid).collection('chat').doc(therapistId).set({
+			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+			displayName,
+			photoURL,
+			uid,
+			to: therapistName,
+			to_photo:  therapistPhotoUrl,
+			to_uid: therapistId,
+		})
 
 		firestore.collection('users').doc(therapistId).collection('chat').doc(user?.uid).collection('messages').add({
 			text: formValue,
@@ -93,16 +103,18 @@ return (
 		<>
 		<Head>
 			<title>
-				ChatBot
+				Chat
 			</title>
 		</Head>
 		<div className={styles.headerr}>
 			<div className={styles.icon}>
 				<LucideArrowLeft onClick={goBack} className={styles.arrow} />
-				<div className={styles.chatAvatar}>
-					<LucideUser/>
-				</div>
-				<p className={styles.name}>ChatBot</p>
+				{/*<div className={styles.chatAvatar}>*/}
+					<img className={styles.chatAvatar} src={therapistPhotoUrl} alt="" />
+				{/*</div>*/}
+				<p className={styles.name}>
+					{therapistName}
+				</p>
 			</div>
 		</div>
 		<div className={styles.messageArea}>

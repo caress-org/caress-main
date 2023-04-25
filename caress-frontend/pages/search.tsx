@@ -27,7 +27,7 @@ export default function Search() {
 	  interface Therapist {
 		exists:  boolean;
 		bio: string;
-		photoUrl: string;
+		photoURL: string;
 		name: string;
 		uid:  string;
 	  }
@@ -42,7 +42,9 @@ export default function Search() {
 		router.replace({
 			pathname: '/chat',
 			query: {
-			  therapistUid: therapist.uid
+			  therapistUid: therapist.uid,
+			  therapistName: therapist.name,
+			  therapistPhotoUrl: therapist.photoURL
 			}
 		  });	  }
   
