@@ -43,7 +43,7 @@ export default function ChatBot() {
 
   useEffect(() => {
     dummy.current.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [user]);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -74,6 +74,17 @@ export default function ChatBot() {
       uid,
       displayName,
       photoURL,
+			
+		})
+
+		firestore.collection('users').doc(therapistId).collection('chat').doc(user?.uid).set({
+			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+			displayName : therapistName,
+			photoURL: therapistPhotoUrl,
+			uid: therapistId,
+			to: displayName,
+			to_photo:  photoURL,
+			to_uid: uid,
 		})
   
   
