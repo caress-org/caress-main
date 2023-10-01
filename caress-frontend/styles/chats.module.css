@@ -68,7 +68,6 @@
   }
   
 
-  @media only screen and (max-width: 600px) {
 	.chatContainer {
 	  flex-direction: column;
 	  height: calc(100vh - 100px); /* Account for the bottom bar and chat header */
@@ -84,7 +83,7 @@
 	  width: 100%;
 	  height: 200px;
 	}
-  }
+
 
 .header {
 	font-size: 25px;
@@ -150,13 +149,20 @@
 	bottom: 0;
 	/*background-color: rgb(24, 23, 23);*/
 	width: 100%;
-	max-width: 728px;
+	/*max-width: 728px;*/
 	display: flex;
 	font-size: 1.5rem;
 	padding: 15px;
 	/*border-radius: 20px;*/
 	/*background-color: #ECDFF5;*/
 	z-index: 1;
+  }
+
+  @media (min-width: 1200px) {
+	.form {
+		padding-left: 20%;
+		padding-right: 20%;
+	}
   }
   
 .form button {

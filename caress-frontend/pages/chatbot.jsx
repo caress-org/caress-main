@@ -37,10 +37,10 @@ export default function ChatBot() {
   const dummy = useRef();
 	const firestore = firebase.firestore();
   const messagesRef = firestore.collection('users').doc(user?.uid).collection('chatbot');
-  const query = messagesRef.orderBy('createdAt',  'desc').limit(25);
+  const query = messagesRef.orderBy('createdAt').limitToLast(25);
 
   let [messages] = useCollectionData(query, { idField: 'id' });
-	messages = messages?.reverse();
+	//messages = messages?.reverse();
 	const [data, setData] = useState("");
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function ChatBot() {
 
 	useEffect(() => {
     dummy.current.scrollIntoView({ behavior: 'smooth' });
-  }, [user]);
+  }, [messages]);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -69,7 +69,7 @@ export default function ChatBot() {
       photoURL,
     });
 
-		fetch('https://caress-chatbot.devansharora.repl.co/predict', {
+		fetch('https://caress-chatbot-2.devansharora.repl.co/predict', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
